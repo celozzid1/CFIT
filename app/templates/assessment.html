@@ -1,0 +1,1778 @@
+<!-- Assessment page
+This is the Assessment main Administrator page. Here an Administrator can see create/delete Administrators, Instructors and Students
+Currently the Administrator is also classified as an Instructor and with that comes Instructor level capabilities. -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>CFIT Form</title>
+		
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    
+    
+    <style>
+      html, body {
+      min-height: 100%;
+      }
+      body, div, form, input, p { 
+      padding: 0;
+      margin: 0;
+      outline: none;
+      font-family: Roboto, Arial, sans-serif;
+      font-size: 14px;
+      color: #666;
+      line-height: 22px;
+      }
+      p { 
+      color: #ff0000;
+      }
+      h1 {
+      font-weight: 400;
+      color: #095484;
+      }
+      h4 {
+      margin: 22px 0 4px;
+      color: #095484;
+      }
+      .colums {
+      display:flex;
+      justify-content:space-between;
+      flex-direction:row;
+      flex-wrap:wrap;
+      }
+      .colums div {
+      width:48%;
+      }
+      .item {
+      position: relative;
+      margin: 0px 0;
+      }
+      input, select, textarea {
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      }
+      input {
+      width: calc(100% - 10px);
+      padding: 5px;
+      }
+      .testbox {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: inherit;
+      padding: 3px;
+      }
+      form {
+      width: 100%;
+      padding: 20px;
+      background: #fff;
+      box-shadow: 0 2px 5px #ccc; 
+      }
+      input {
+      width: 80%;
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      vertical-align: middle;
+      }
+      input:hover, textarea:hover {
+      outline: none;
+      border: 1px solid #095484;
+      }
+      .first-name {
+      margin-bottom: 22px;
+      }
+      span {
+      color: red;
+      font-weight:bold;
+      width: auto;
+      }
+      td {
+      width: 0;
+      padding: 10px 0;
+      border-bottom: 1px solid #ccc;
+      text-align: center;
+      vertical-align: unset;
+      line-height: 18px;
+      font-weight: 400;
+      word-break: break-all;
+      }
+      th {
+      color: #ff0000;
+      width: 0;
+      padding: 10px 0;
+      border-bottom: 1px solid #ccc;
+      text-align: center;
+      vertical-align: unset;
+      line-height: 22px;
+      font-weight: 600;
+      word-break: break-all;
+      }
+      .first-col {
+      width: 0;
+      text-align: left;
+      }
+      table {
+      width: 100%;
+      }
+      textarea {
+      width: calc(100% -  5px);
+      }
+      .btn-block {
+      margin-top: 20px;
+      text-align: center;
+      }
+      button {
+      width: 150px;
+      padding: 10px;
+      border: none;
+      -webkit-border-radius: 5px; 
+      -moz-border-radius: 5px; 
+      border-radius: 5px; 
+      background-color: #095484;
+      font-size: 16px;
+      color: #fff;
+      cursor: pointer;
+      }
+      button:hover {
+      background-color: #0666a3;
+      }
+      #main-footer {
+          display: flex;
+          margin-top: 40px;
+          padding: 20px;
+          flex-direction: row;
+          background: #095484;
+          color: #eee;
+          height: 55px;
+          justify-content: center;
+      }
+      @media (min-width: 568px) {
+      th, td {
+      word-break: keep-all;
+      }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="testbox">
+      <form style="background-color: ;" method = "post">
+	 <img src="/static/images/logo1.png"/>
+        <div>
+        <h1 style="font-weight: bold;"><center>Clinical Feedback Instructional Tool</center></h1>
+      <br>
+
+
+         <!-- INFORMATION ROW -->
+      <div class="container">
+        <div class="row descriptors">
+
+          <div class="col-sm">
+            <!--inner-->
+          </div>
+    
+          <div class="col-2">
+            <div class="item">
+              <label for="id" id="id" name="id">Student ID: <span>{{id}}</span></label>
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="item">
+       	 <label for="student_name" id="student_name" name="student_name">Student Name: <span>{{student_name}}</span></label>
+          
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="item">
+              <label for="course" id="course" name="course">Course Practicum No: <span>{{course}}</span></label>
+             
+            </div>
+          </div>
+  		<div class="col-3">
+            <div class="item">
+              <label for="course_instructor" id="course_instructor" name="course_instructor">Clinical Instructor: <span>{{course_instructor}}</span></label>
+            
+            </div>
+          </div>
+          
+
+   <!--        <div class="col-sm">-->
+            <!--place holder-->
+   <!--        </div>-->
+       
+        <div class="container">
+          <div class="row">
+
+
+             <div class="col-sm-1">
+              <!--OUTER-->
+             </div>
+
+		<div class="col-2">
+            <div class="item">
+              <label for="semester" id="semester" name="semester">Semester: <span>{{semester}}</span></label>
+            
+            </div>
+          </div>
+          
+           <!-- <div class="col-sm-1">-->
+              <!--OUTER-->
+          <!--  </div>-->
+
+            <div class="col-3">
+                      <div class="item">
+                         <label for="client_name" id="client_name" name="client_name">Client: <span>{{client_name}}</span></label>
+                      </div>
+                    </div>
+    
+      
+
+          <div class="col-3">
+            <div class="item">
+              <label for="client_disorder" id="client_disorder" name="client_disorder">Disorder: <span>{{client_disorder}}</span></label>
+      
+            </div>
+          </div>
+
+         
+		<div class="col-2">
+            <div class="item">
+              <label for="date">Date: <span>
+              <script>
+              date = new Date().toLocaleDateString();
+              document.write(date);
+              </script>
+              </span></label>
+
+            </div>
+          </div>
+
+        </div>
+        </div>
+      </div>
+      </div>
+
+
+    
+<!-------------------------------------------------------------------------------------------------------------------------->
+        
+    <!--Static legend-->
+    <div class="container">
+      <div class="row">
+          <div class="col-sm">
+          </div>
+      </div>
+  </div>
+
+  <hr>
+      
+  <!-------------------------------------------------------------------------------------------------------------------------->
+
+      <!-- Tabs navigation -->
+
+      <ul class="nav nav-tabs">
+        <li class="nav-item"><a data-toggle="tab" a class="nav-link active" href="#section_a">A. Selection of Activities</a></li>
+        <li><a data-toggle="tab" a class="nav-link" href="#section_b">B. Implemenation of Activities</a></li>
+        <li><a data-toggle="tab" a class="nav-link" href="#section_c">C. Therapeutic Interventions</a></li>
+        <li><a data-toggle="tab" a class="nav-link" href="#section_d">D. Communication</a></li>
+        <li><a data-toggle="tab" a class="nav-link" href="#section_e">E. Collaboration</a></li>
+      </ul>
+
+      <!----------------------------------------------------SECTION A OF FORM------------------------------------------------->
+      <div class="tab-content">        <div id="section_a" class="tab-pane active">
+        <center><h4>A. Selection of Activities and Materials<span></span></h4></center>
+        <table>
+          <tr>
+            <th class="first-col"></th>
+            <th><p class="text-center">N/A</p><th>
+              <p class="text-center fs-6" data-bs-toggle="tooltip" title="Skill or behavior is absent, and/or poorly executed. Student requires or will require a high degree of feedback in this area, directed toward skill acquisition or performance.">Inadequate</th><th></th>
+            <th>  <p class="text-center fs-6" data-bs-toggle="tooltip" title="Skill or behavior is performed appropriately but inconsistently. Student requires or will require a moderate to high degree of feedback in this area, directed toward skill acquisition or performance.">Emerging</th><th></th>
+            <th> <p class="text-center fs-6" data-bs-toggle="tooltip" title="Skill or behavior is performed appropriately with fair degree of consistency. Student requires or will require a minimal to moderate degree of feedback in this area, directed toward skill performance or generalization.">Developing</th><th></th>
+            <th> <p class="text-center fs-6" data-bs-toggle="tooltip" title="Skill or behavior is performed effectively with moderate consistency.  Student requires or will require minimal feedback in this area, directed toward skill performance or generalization.">Refining</th><th></th>
+            <th> <p class="text-center fs-6" data-bs-toggle="tooltip" title="Skill or behavior is performed efficiently and effectively with a high degree of consistency. Student requires or will require little to no feedback in this area. Feedback is directed toward skill refinement.">Proficient</th><th></th>
+          </tr>
+          <tr style="background-color:#D3D3D3">
+         
+            <td class="first-col">1. Intervention activities targeted the objectives identified in the Session Plan.</td>
+            <td><input type="radio" name="a1_rating" value=0 {% if a1_rating == 0 %} checked{% endif %}/></td>
+            <td><input type="radio" name="a1_rating" value=1 {% if a1_rating == 1 %} checked{% endif %}/></td>
+            <td><input type="radio" name="a1_rating" value=1.5 {% if a1_rating == 1.5 %} checked{% endif %}/></td>
+            <td><input type="radio" name="a1_rating" value=2 {% if a1_rating == 2 %} checked{% endif %}/></td>
+            <td><input type="radio" name="a1_rating" value=2.5 {% if a1_rating == 2.5 %} checked{% endif %}/></td>
+            <td><input type="radio" name="a1_rating" value=3 {% if a1_rating == 3 %} checked{% endif %}/></td>
+            <td><input type="radio" name="a1_rating" value=3.5 {% if a1_rating == 3.5 %} checked{% endif %}/></td>
+            <td><input type="radio" name="a1_rating" value=4 {% if a1_rating == 4 %} checked{% endif %}/></td>
+            <td><input type="radio" name="a1_rating" value=4.5 {% if a1_rating == 4.5 %} checked{% endif %}/></td>
+            <td><input type="radio" name="a1_rating" value=5 {% if a1_rating == 5 %} checked{% endif %}/></td>
+        </tr>
+
+        <tr>
+          <!--td-->
+            <div class="col-sm-12 form-group">
+            <!-- INSTRUCTOR DROPDOWN COMMENT -->
+            <td>
+              <!--p-->
+                <a class="btn btn-secondary" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Instructor Comment</a>
+              <!--/p-->
+              
+              <!--div class="row"-->
+                <!--div class="col"-->
+                  <div class="collapse multi-collapse" id="multiCollapseExample1">
+                  <textarea class="form-control" type="textarea" name="a1_instructor_comment" id="a1_instructor_comment" placeholder="{{a1_instructor_comment}}" maxlength="6000" rows="4"></textarea><!--/td-->
+                  <!--td></td><td></td><td></td><td></td><td></td><td></td><td></td-->
+                </div>
+              </div>
+
+            <!-- STUDENT DROPDOWN COMMENT -->
+          <!--td-->
+            <!--p-->
+              <a class="btn btn-secondary" data-toggle="collapse" href="#multiCollapseExample2" role="button" aria-expanded="false" aria-controls="multiCollapseExample2">Student Comment</a>
+            <!--/p-->
+            <div class="row">
+              <div class="col">
+                <div class="collapse multi-collapse" id="multiCollapseExample2">
+                <textarea class="form-control" type="textarea" name="a1_student_comment" id="a1_student_comment" placeholder="{{a1_student_comment}}" maxlength="6000" rows="4"></textarea></td>
+            </div></td></tr>
+          <!--
+            <td><div class="col-sm-12 form-group">
+            <label for="comments">
+                Student Comments:</label>
+            <textarea class="form-control" type="textarea" name="comments" id="comments" placeholder="Type here" maxlength="6000" rows="4"></textarea>
+        </div></td>
+        
+          <td><h4>Instructor Comment</h4>
+            <textarea rows="5"></textarea></td>
+            <td><h4>Student Comment</h4>
+            <textarea rows="5"></textarea></td>
+          -->
+          <tr style="background-color:#D3D3D3">
+            <td class="first-col">2. Clinician planned appropriate number of activities to engage client for entire session.</td>
+            <td><input type="radio" name="a2_rating" value=0 {% if a2_rating == 0 %} checked{% endif %}/></td>
+            <td><input type="radio" name="a2_rating" value=1 {% if a2_rating == 1 %} checked{% endif %}/></td>
+            <td><input type="radio" name="a2_rating" value=1.5 {% if a2_rating == 1.5 %} checked{% endif %}/></td>
+            <td><input type="radio" name="a2_rating" value=2 {% if a2_rating == 2 %} checked{% endif %}/></td>
+            <td><input type="radio" name="a2_rating" value=2.5 {% if a2_rating == 2.5 %} checked{% endif %}/></td>
+            <td><input type="radio" name="a2_rating" value=3 {% if a2_rating == 3 %} checked{% endif %}/></td>
+            <td><input type="radio" name="a2_rating" value=3.5 {% if a2_rating == 3.5 %} checked{% endif %}/></td>
+            <td><input type="radio" name="a2_rating" value=4 {% if a2_rating == 4 %} checked{% endif %}/></td>
+            <td><input type="radio" name="a2_rating" value=4.5 {% if a2_rating == 4.5 %} checked{% endif %}/></td>
+            <td><input type="radio" name="a2_rating" value=5 {% if a2_rating == 5 %} checked{% endif %}/></td>
+        </tr>
+        <tr>
+          <!--td-->
+            <div class="col-sm-12 form-group">
+            <!-- INSTRUCTOR DROPDOWN COMMENT -->
+            <td>
+              <!--p-->
+                <a class="btn btn-secondary" data-toggle="collapse" href="#multiCollapseExample3" role="button" aria-expanded="false" aria-controls="multiCollapseExample3">Instructor Comment</a>
+              <!--/p-->
+              
+              <!--div class="row"-->
+                <!--div class="col"-->
+                  <div class="collapse multi-collapse" id="multiCollapseExample3">
+                  <textarea class="form-control" type="textarea" name="a2_instructor_comment" id="a2_instructor_comment" placeholder="{{a2_instructor_comment}}" maxlength="6000" rows="4"></textarea><!--/td-->
+                  <!--<td></td><td></td><td></td><td></td><td></td><td></td><td></td>-->
+                </div>
+              </div>
+
+            <!-- STUDENT DROPDOWN COMMENT -->
+          <!--td-->
+            <!--p-->
+              <a class="btn btn-secondary" data-toggle="collapse" href="#multiCollapseExample4" role="button" aria-expanded="false" aria-controls="multiCollapseExample4">Student Comment</a>
+            <!--/p-->
+            <div class="row">
+              <div class="col">
+                <div class="collapse multi-collapse" id="multiCollapseExample4">
+                <textarea class="form-control" type="textarea" name="a2_student_comment" id="a2_student_comment" placeholder="{{a2_student_comment}}" maxlength="6000" rows="4"></textarea></td>
+            </div></td></tr>
+
+          <tr style="background-color:#D3D3D3">
+            <td class="first-col">3. The activities and materials used by the clinician clearly reflected the client’s interests.</td>
+            <td><input type="radio" name="a3_rating" value=0 {% if a3_rating == 0 %} checked{% endif %}/></td>
+            <td><input type="radio" name="a3_rating" value=1 {% if a3_rating == 1 %} checked{% endif %}/></td>
+            <td><input type="radio" name="a3_rating" value=1.5 {% if a3_rating == 1.5 %} checked{% endif %}/></td>
+            <td><input type="radio" name="a3_rating" value=2 {% if a3_rating == 2 %} checked{% endif %}/></td>
+            <td><input type="radio" name="a3_rating" value=2.5 {% if a3_rating == 2.5 %} checked{% endif %}/></td>
+            <td><input type="radio" name="a3_rating" value=3 {% if a3_rating == 3 %} checked{% endif %}/></td>
+            <td><input type="radio" name="a3_rating" value=3.5 {% if a3_rating == 3.5 %} checked{% endif %}/></td>
+            <td><input type="radio" name="a3_rating" value=4 {% if a3_rating == 4 %} checked{% endif %}/></td>
+            <td><input type="radio" name="a3_rating" value=4.5 {% if a3_rating == 4.5 %} checked{% endif %}/></td>
+            <td><input type="radio" name="a3_rating" value=5 {% if a3_rating == 5 %} checked{% endif %}/></td>
+       </tr>
+
+       <tr>
+        <!--td-->
+          <div class="col-sm-12 form-group">
+          <!-- INSTRUCTOR DROPDOWN COMMENT -->
+          <td>
+            <!--p-->
+              <a class="btn btn-secondary" data-toggle="collapse" href="#multiCollapseExample5" role="button" aria-expanded="false" aria-controls="multiCollapseExample5">Instructor Comment</a>
+            <!--/p-->
+            
+            <!--div class="row"-->
+              <!--div class="col"-->
+                <div class="collapse multi-collapse" id="multiCollapseExample5">
+                <textarea class="form-control" type="textarea" name="a3_instructor_comment" id="a3_instructor_comment" placeholder="{{a3_instructor_comment}}" maxlength="6000" rows="4"></textarea><!--/td-->
+                <!--td></td><td></td><td></td><td></td><td></td><td></td><td></td-->
+              </div>
+            </div>
+
+          <!-- STUDENT DROPDOWN COMMENT -->
+        <!--td-->
+          <!--p-->
+            <a class="btn btn-secondary" data-toggle="collapse" href="#multiCollapseExample6" role="button" aria-expanded="false" aria-controls="multiCollapseExample6">Student Comment</a>
+          <!--/p-->
+          <div class="row">
+            <div class="col">
+              <div class="collapse multi-collapse" id="multiCollapseExample6">
+              <textarea class="form-control" type="textarea" name="a3_student_comment" id="a3_student_comment" placeholder="{{a3_student_comment}}" maxlength="6000" rows="4"></textarea></td>
+          </div></td></tr>
+
+          <tr style="background-color:#D3D3D3">
+            <td class="first-col">4. Clinician chose activities appropriate to age, culture, functional/developmental level, etc. of the client.</td>
+            <td><input type="radio" name="a4_rating" value=0 {% if a4_rating == 0 %} checked{% endif %}/>
+            <td><input type="radio" name="a4_rating" value=1 {% if a4_rating == 1 %} checked{% endif %}/></td>
+            <td><input type="radio" name="a4_rating" value=1.5 {% if a4_rating == 1.5 %} checked{% endif %}/></td>
+            <td><input type="radio" name="a4_rating" value=2 {% if a4_rating == 2 %} checked{% endif %}/></td>
+            <td><input type="radio" name="a4_rating" value=2.5 {% if a4_rating == 2.5 %} checked{% endif %}/></td>
+            <td><input type="radio" name="a4_rating" value=3 {% if a4_rating == 3 %} checked{% endif %}/></td>
+            <td><input type="radio" name="a4_rating" value=3.5 {% if a4_rating == 3.5 %} checked{% endif %}/></td>
+            <td><input type="radio" name="a4_rating" value=4 {% if a4_rating == 4 %} checked{% endif %}/></td>
+            <td><input type="radio" name="a4_rating" value=4.5 {% if a4_rating == 4.5 %} checked{% endif %}/></td>
+            <td><input type="radio" name="a4_rating" value=5 {% if a4_rating == 5 %} checked{% endif %}/></td>
+        </tr>
+
+       <tr>
+        <!--td-->
+          <div class="col-sm-12 form-group">
+          <!-- INSTRUCTOR DROPDOWN COMMENT -->
+          <td>
+            <!--p-->
+              <a class="btn btn-secondary" data-toggle="collapse" href="#multiCollapseExample7" role="button" aria-expanded="false" aria-controls="multiCollapseExample7">Instructor Comment</a>
+            <!--/p-->
+            
+            <!--div class="row"-->
+              <!--div class="col"-->
+                <div class="collapse multi-collapse" id="multiCollapseExample7">
+                <textarea class="form-control" type="textarea" name="a4_instructor_comment" id="a4_instructor_comment" placeholder="{{a4_instructor_comment}}" maxlength="6000" rows="4"></textarea><!--/td-->
+                <!--td></td><td></td><td></td><td></td><td></td><td></td><td></td-->
+              </div>
+            </div>
+
+          <!-- STUDENT DROPDOWN COMMENT -->
+        <!--td-->
+          <!--p-->
+            <a class="btn btn-secondary" data-toggle="collapse" href="#multiCollapseExample8" role="button" aria-expanded="false" aria-controls="multiCollapseExample8">Student Comment</a>
+          <!--/p-->
+          <div class="row">
+            <div class="col">
+              <div class="collapse multi-collapse" id="multiCollapseExample8">
+              <textarea class="form-control" type="textarea" name="a4_student_comment" id="a4_student_comment" placeholder="{{a4_student_comment}}" maxlength="6000" rows="4"></textarea></td>
+          </div></td></tr>
+
+          <tr style="background-color:#D3D3D3">
+            <td class="first-col">5. If indicated, clinician provided appropriate activities for home practice.</td>
+            <td><input type="radio" name="a5_rating" value=0 {% if a5_rating == 0 %} checked{% endif %}/></td>
+            <td><input type="radio" name="a5_rating" value=1 {% if a5_rating == 1 %} checked{% endif %}/></td>
+            <td><input type="radio" name="a5_rating" value=1.5 {% if a5_rating == 1.5 %} checked{% endif %}/></td>
+            <td><input type="radio" name="a5_rating" value=2 {% if a5_rating == 2 %} checked{% endif %}/></td>
+            <td><input type="radio" name="a5_rating" value=2.5 {% if a5_rating == 2.5 %} checked{% endif %}/></td>
+            <td><input type="radio" name="a5_rating" value=3 {% if a5_rating == 3 %} checked{% endif %}/></td>
+            <td><input type="radio" name="a5_rating" value=3.5 {% if a5_rating == 3.5 %} checked{% endif %}/></td>
+            <td><input type="radio" name="a5_rating" value=4 {% if a5_rating == 4 %} checked{% endif %}/></td>
+            <td><input type="radio" name="a5_rating" value=4.5 {% if a5_rating == 4.5 %} checked{% endif %}/></td>
+            <td><input type="radio" name="a5_rating" value=5 {% if a5_rating == 5 %} checked{% endif %}/></td>
+         </tr>
+
+         <tr>
+          <!--td-->
+            <div class="col-sm-12 form-group">
+            <!-- INSTRUCTOR DROPDOWN COMMENT -->
+            <td>
+              <!--p-->
+                <a class="btn btn-secondary" data-toggle="collapse" href="#multiCollapseExample9" role="button" aria-expanded="false" aria-controls="multiCollapseExample9">Instructor Comment</a>
+              <!--/p-->
+              
+              <!--div class="row"-->
+                <!--div class="col"-->
+                  <div class="collapse multi-collapse" id="multiCollapseExample9">
+                  <textarea class="form-control" type="textarea" name="a5_instructor_comment" id="a5_instructor_comment" placeholder="{{a5_instructor_comment}}" maxlength="6000" rows="4"></textarea><!--/td-->
+                  <!--td></td><td></td><td></td><td></td><td></td><td></td><td></td-->
+                </div>
+              </div>
+  
+            <!-- STUDENT DROPDOWN COMMENT -->
+          <!--td-->
+            <!--p-->
+              <a class="btn btn-secondary" data-toggle="collapse" href="#multiCollapseExample10" role="button" aria-expanded="false" aria-controls="multiCollapseExample10">Student Comment</a>
+            <!--/p-->
+            <div class="row">
+              <div class="col">
+                <div class="collapse multi-collapse" id="multiCollapseExample10">
+                <textarea class="form-control" type="textarea" name="a5_student_comment" id="a5_student_comment" placeholder="{{a5_student_comment}}" maxlength="6000" rows="4"></textarea></td>
+            </div></td></tr> <!-- </tr> -->
+			</table>	
+		
+      <script>
+      setInterval(calculateAverage_a, 100);
+        function calculateAverage_a()
+            {
+              var a1=parseFloat(document.querySelector('input[name="a1_rating"]:checked').value);
+              var a2=parseFloat(document.querySelector('input[name="a2_rating"]:checked').value);
+              var a3=parseFloat(document.querySelector('input[name="a3_rating"]:checked').value);
+              var a4=parseFloat(document.querySelector('input[name="a4_rating"]:checked').value);
+              var a5=parseFloat(document.querySelector('input[name="a5_rating"]:checked').value);
+              document.getElementById("average_a").innerHTML=(a1+a2+a3+a4+a5)/5;
+            }
+            
+      	</script>
+		
+			 <div class="item">	
+				 <center><label for="average_a"> Average for Section A:	<b><label style="color: red" id="average_a"></b></label></label></center>
+		     </div>
+		  		
+          
+          
+
+          <!----------------------BUTTON LINE----------------------->
+          <div class="container">
+            <div class="row">
+              <div class="col-sm">
+                <!--inner-->
+              </div>
+        
+          <div class="btn-group" role="group" aria-label="buttons">
+            <button data-toggle="tab" a class="nav-link" href="#section_b">Next</button>
+            <button type="Dashboard" formaction="/dashboard">Dashboard</button>
+          </div>
+
+          <div class="col-sm">
+            <!--Outer-->
+          </div>
+        </div>
+        </div>
+        </div>
+ 
+     <!----------------------------------------------------SECTION B OF FORM------------------------------------------------->
+        <div id="section_b" class="tab-pane fade">
+          <center><h4>B. Implementation of Selected Activities and Materials<span></span></h4></center>
+          <table>
+            <tr>
+              <th class="first-col"></th>
+              <th><p class="text-center">N/A</p><th>
+                <p class="text-center fs-6" data-bs-toggle="tooltip" title="Skill or behavior is absent, and/or poorly executed. Student requires or will require a high degree of feedback in this area, directed toward skill acquisition or performance.">Inadequate</th><th></th>
+              <th>  <p class="text-center fs-6" data-bs-toggle="tooltip" title="Skill or behavior is performed appropriately but inconsistently. Student requires or will require a moderate to high degree of feedback in this area, directed toward skill acquisition or performance.">Emerging</th><th></th>
+              <th> <p class="text-center fs-6" data-bs-toggle="tooltip" title="Skill or behavior is performed appropriately with fair degree of consistency. Student requires or will require a minimal to moderate degree of feedback in this area, directed toward skill performance or generalization.">Developing</th><th></th>
+              <th> <p class="text-center fs-6" data-bs-toggle="tooltip" title="Skill or behavior is performed effectively with moderate consistency. Student requires or will require minimal feedback in this area, directed toward skill performance or generalization.">Refining</th><th></th>
+              <th> <p class="text-center fs-6" data-bs-toggle="tooltip" title="Skill or behavior is performed efficiently and effectively with a high degree of consistency. Student requires or will require little to no feedback in this area. Feedback is directed toward skill refinement.">Proficient</th><th></th>
+            </tr>
+            <tr style="background-color:#D3D3D3">
+              <td class="first-col">1. Clinician effectively utilized materials and activities.</td>
+              <td><input type="radio" name="b1_rating" value=0 {% if b1_rating == 0 %} checked{% endif %}/></td>
+              <td><input type="radio" name="b1_rating" value=1 {% if b1_rating == 1 %} checked{% endif %}/></td>
+              <td><input type="radio" name="b1_rating" value=1.5 {% if b1_rating == 1.5 %} checked{% endif %}/></td>
+              <td><input type="radio" name="b1_rating" value=2 {% if b1_rating == 2 %} checked{% endif %}/></td>
+              <td><input type="radio" name="b1_rating" value=2.5 {% if b1_rating == 2.5 %} checked{% endif %}/></td>
+              <td><input type="radio" name="b1_rating" value=3 {% if b1_rating == 3 %} checked{% endif %}/></td>
+              <td><input type="radio" name="b1_rating" value=3.5 {% if b1_rating == 3.5 %} checked{% endif %}/></td>
+              <td><input type="radio" name="b1_rating" value=4 {% if b1_rating == 4 %} checked{% endif %}/></td>
+              <td><input type="radio" name="b1_rating" value=4.5 {% if b1_rating == 4.5 %} checked{% endif %}/></td>
+              <td><input type="radio" name="b1_rating" value=5 {% if b1_rating == 5 %} checked{% endif %}/></td>
+            </tr>
+
+            <tr>
+              <!--td-->
+                <div class="col-sm-12 form-group">
+                <!-- INSTRUCTOR DROPDOWN COMMENT -->
+                <td>
+                  <!--p-->
+                    <a class="btn btn-secondary" data-toggle="collapse" href="#multiCollapseExample11" role="button" aria-expanded="false" aria-controls="multiCollapseExample11">Instructor Comment</a>
+                  <!--/p-->
+                  
+                  <!--div class="row"-->
+                    <!--div class="col"-->
+                      <div class="collapse multi-collapse" id="multiCollapseExample11">
+                      <textarea class="form-control" type="textarea" name="b1_instructor_comment" id="b1_instructor_comment" placeholder="Type Here" maxlength="6000" rows="4"></textarea><!--/td-->
+                      <!--td></td><td></td><td></td><td></td><td></td><td></td><td></td-->
+                    </div>
+                  </div>
+      
+                <!-- STUDENT DROPDOWN COMMENT -->
+              <!--td-->
+                <!--p-->
+                  <a class="btn btn-secondary" data-toggle="collapse" href="#multiCollapseExample12" role="button" aria-expanded="false" aria-controls="multiCollapseExample12">Student Comment</a>
+                <!--/p-->
+                <div class="row">
+                  <div class="col">
+                    <div class="collapse multi-collapse" id="multiCollapseExample12">
+                    <textarea class="form-control" type="textarea" name="b1_student_comment" id="b1comments" placeholder="Type here" maxlength="6000" rows="4"></textarea></td>
+                </div></td></tr>
+
+            <!--
+              <td><div class="col-sm-12 form-group">
+              <label for="comments">
+                  Student Comments:</label>
+              <textarea class="form-control" type="textarea" name="comments" id="comments" placeholder="Type here" maxlength="6000" rows="4"></textarea>
+          </div></td>
+          
+            <td><h4>Instructor Comment</h4>
+              <textarea rows="5"></textarea></td>
+              <td><h4>Student Comment</h4>
+              <textarea rows="5"></textarea></td>
+            -->
+            <tr style="background-color:#D3D3D3">
+              <td class="first-col">2. Clinician adjusted the materials and activities to optimize client response.</td>
+              <td><input type="radio" name="b2_rating" value=0 {% if b2_rating == 0 %} checked{% endif %}/></td>
+              <td><input type="radio" name="b2_rating" value=1 {% if b2_rating == 1 %} checked{% endif %}/></td>
+              <td><input type="radio" name="b2_rating" value=1.5 {% if b2_rating == 1.5 %} checked{% endif %}/></td>
+              <td><input type="radio" name="b2_rating" value=2 {% if b2_rating == 2 %} checked{% endif %}/></td>
+              <td><input type="radio" name="b2_rating" value=2.5 {% if b2_rating == 2.5 %} checked{% endif %}/></td>
+              <td><input type="radio" name="b2_rating" value=3 {% if b2_rating == 3 %} checked{% endif %}/></td>
+              <td><input type="radio" name="b2_rating" value=3.5 {% if b2_rating == 3.5 %} checked{% endif %}/></td>
+              <td><input type="radio" name="b2_rating" value=4 {% if b2_rating == 4 %} checked{% endif %}/></td>
+              <td><input type="radio" name="b2_rating" value=4.5 {% if b2_rating == 4.5 %} checked{% endif %}/></td>
+              <td><input type="radio" name="b2_rating" value=5 {% if b2_rating == 5 %} checked{% endif %}/></td>
+            </tr>
+
+                        <tr>
+              <!--td-->
+                <div class="col-sm-12 form-group">
+                <!-- INSTRUCTOR DROPDOWN COMMENT -->
+                <td>
+                  <!--p-->
+                    <a class="btn btn-secondary" data-toggle="collapse" href="#multiCollapseExample13" role="button" aria-expanded="false" aria-controls="multiCollapseExample13">Instructor Comment</a>
+                  <!--/p-->
+                  
+                  <!--div class="row"-->
+                    <!--div class="col"-->
+                      <div class="collapse multi-collapse" id="multiCollapseExample13">
+                      <textarea class="form-control" type="textarea" name="b2_instructor_comment" id="b2_instructor_comment" placeholder="Type Here" maxlength="6000" rows="4"></textarea><!--/td-->
+                      <!--td></td><td></td><td></td><td></td><td></td><td></td><td></td-->
+                    </div>
+                  </div>
+      
+                <!-- STUDENT DROPDOWN COMMENT -->
+              <!--td-->
+                <!--p-->
+                  <a class="btn btn-secondary" data-toggle="collapse" href="#multiCollapseExample14" role="button" aria-expanded="false" aria-controls="multiCollapseExample14">Student Comment</a>
+                <!--/p-->
+                <div class="row">
+                  <div class="col">
+                    <div class="collapse multi-collapse" id="multiCollapseExample14">
+                    <textarea class="form-control" type="textarea" name="b2_student_comment" id="b2comments" placeholder="Type here" maxlength="6000" rows="4"></textarea></td>
+                </div></td></tr>
+
+            <tr style="background-color:#D3D3D3">
+              <td class="first-col">3. Clinician implemented activities at the appropriate level of challenge/complexity for the client.</td>
+              <td><input type="radio" name="b3_rating" value=0 {% if b3_rating == 0 %} checked{% endif %}/></td>
+              <td><input type="radio" name="b3_rating" value=1 {% if b3_rating == 1 %} checked{% endif %}/></td>
+              <td><input type="radio" name="b3_rating" value=1.5 {% if b3_rating == 1.5 %} checked{% endif %}/></td>
+              <td><input type="radio" name="b3_rating" value=2 {% if b3_rating == 2 %} checked{% endif %}/></td>
+              <td><input type="radio" name="b3_rating" value=2.5 {% if b3_rating == 2.5 %} checked{% endif %}/></td>
+              <td><input type="radio" name="b3_rating" value=3 {% if b3_rating == 3 %} checked{% endif %}/></td>
+              <td><input type="radio" name="b3_rating" value=3.5 {% if b3_rating == 3.5 %} checked{% endif %}/></td>
+              <td><input type="radio" name="b3_rating" value=4 {% if b3_rating == 4 %} checked{% endif %}/></td>
+              <td><input type="radio" name="b3_rating" value=4.5 {% if b3_rating == 4.5 %} checked{% endif %}/></td>
+              <td><input type="radio" name="b3_rating" value=5 {% if b3_rating == 5 %} checked{% endif %}/></td>
+            </tr>
+
+            <tr>
+              <!--td-->
+                <div class="col-sm-12 form-group">
+                <!-- INSTRUCTOR DROPDOWN COMMENT -->
+                <td>
+                  <!-- <p> -->
+                    <a class="btn btn-secondary" data-toggle="collapse" href="#multiCollapseExample15" role="button" aria-expanded="false" aria-controls="multiCollapseExample15">Instructor Comment</a>
+                  <!-- </p> -->
+                  
+                  <!-- <div class="row"> -->
+                    <!-- <div class="col"> -->
+                      <div class="collapse multi-collapse" id="multiCollapseExample15">
+                      <textarea class="form-control" type="textarea" name="b3_instructor_comment" id="b3_instructor_comment" placeholder="Type Here" maxlength="6000" rows="4"></textarea><!--/td-->
+                      <!-- <td></td><td></td><td></td><td></td><td></td><td></td><td></td> -->
+                    </div>
+                  </div>
+      
+                <!-- STUDENT DROPDOWN COMMENT -->
+              <!-- <td> -->
+                <!-- <p> -->
+                  <a class="btn btn-secondary" data-toggle="collapse" href="#multiCollapseExample16" role="button" aria-expanded="false" aria-controls="multiCollapseExample16">Student Comment</a>
+                <!-- </p> -->
+                <div class="row">
+                  <div class="col">
+                    <div class="collapse multi-collapse" id="multiCollapseExample16">
+                    <textarea class="form-control" type="textarea" name="b3_student_comment" id="b3comments" placeholder="Type here" maxlength="6000" rows="4"></textarea></td>
+                </div></td></tr>
+
+            <tr style="background-color:#D3D3D3">
+              <td class="first-col">4. Clinician transitioned between activities smoothly and effectively.</td>
+              <td><input type="radio" name="b4_rating" value=0 {% if b4_rating == 0 %} checked{% endif %}/></td>
+              <td><input type="radio" name="b4_rating" value=1 {% if b4_rating == 1 %} checked{% endif %}/></td>
+              <td><input type="radio" name="b4_rating" value=1.5 {% if b4_rating == 1.5 %} checked{% endif %}/></td>
+              <td><input type="radio" name="b4_rating" value=2 {% if b4_rating == 2 %} checked{% endif %}/></td>
+              <td><input type="radio" name="b4_rating" value=2.5 {% if b4_rating == 2.5 %} checked{% endif %}/></td>
+              <td><input type="radio" name="b4_rating" value=3 {% if b4_rating == 3 %} checked{% endif %}/></td>
+              <td><input type="radio" name="b4_rating" value=3.5 {% if b4_rating == 3.5 %} checked{% endif %}/></td>
+              <td><input type="radio" name="b4_rating" value=4 {% if b4_rating == 4 %} checked{% endif %}/></td>
+              <td><input type="radio" name="b4_rating" value=4.5 {% if b4_rating == 4.5 %} checked{% endif %}/></td>
+              <td><input type="radio" name="b4_rating" value=5 {% if b4_rating == 5 %} checked{% endif %}/></td>
+            </tr>
+
+            <tr>
+              <!-- <td> -->
+                <div class="col-sm-12 form-group">
+                <!-- INSTRUCTOR DROPDOWN COMMENT -->
+                <td>
+                  <!-- <p> -->
+                    <a class="btn btn-secondary" data-toggle="collapse" href="#multiCollapseExample17" role="button" aria-expanded="false" aria-controls="multiCollapseExample17">Instructor Comment</a>
+                  <!-- </p> -->
+                  
+                  <!-- <div class="row"> -->
+                    <!-- <div class="col"> -->
+                      <div class="collapse multi-collapse" id="multiCollapseExample17">
+                      <textarea class="form-control" type="textarea" name="b4_instructor_comment" id="b4_instructor_comment" placeholder="Type Here" maxlength="6000" rows="4"></textarea><!--/td-->
+                      <!-- <td></td><td></td><td></td><td></td><td></td><td></td><td></td> -->
+                    </div>
+                  </div>
+      
+                <!-- STUDENT DROPDOWN COMMENT -->
+              <!-- <td> -->
+                <!-- <p> -->
+                  <a class="btn btn-secondary" data-toggle="collapse" href="#multiCollapseExample18" role="button" aria-expanded="false" aria-controls="multiCollapseExample18">Student Comment</a>
+                <!-- </p> -->
+                <div class="row">
+                  <div class="col">
+                    <div class="collapse multi-collapse" id="multiCollapseExample18">
+                    <textarea class="form-control" type="textarea" name="b4_student_comment" id="b4comments" placeholder="Type here" maxlength="6000" rows="4"></textarea></td>
+                </div></td></tr>
+
+          </table>
+          <script>
+            setInterval(calculateAverage_b, 100);
+            function calculateAverage_b()
+                {
+                  var b1=parseFloat(document.querySelector('input[name="b1_rating"]:checked').value);
+                  var b2=parseFloat(document.querySelector('input[name="b2_rating"]:checked').value);
+                  var b3=parseFloat(document.querySelector('input[name="b3_rating"]:checked').value);
+                  var b4=parseFloat(document.querySelector('input[name="b4_rating"]:checked').value);
+                  document.getElementById("average_b").innerHTML=(b1+b2+b3+b4)/4;
+            
+                }
+          </script>
+      
+      	  <div class="item">
+		  	<center><label for="average_b"> Average for Section B: <b><label style="color: red" id="average_b"></b></label></label></center>
+		  </div>		
+         
+		  
+      <!----------------------BUTTON LINE----------------------->
+      <div class="container">
+        <div class="row">
+          <div class="col-sm">
+            <!--inner-->
+          </div>
+    
+  
+      <div class="btn-group" role="group" aria-label="buttons">
+        <button data-toggle="tab" a class="nav-link" href="#section_a">Back</button>
+        <button data-toggle="tab" a class="nav-link" href="#section_c">Next</button>
+        <button type="Dashboard" formaction="/dashboard">Dashboard</button>
+      </div>
+  
+    <div class="col-sm">
+      <!--Outer-->
+    </div>
+    </div>
+    </div>
+    </div>
+  
+      
+        <!----------------------------------------------------SECTION C OF FORM------------------------------------------------->
+        <div id="section_c" class="tab-pane fade">
+          <center><h4>C. Therapeutic Interventions, Strategies and Techniques<span></span></h4></center>
+          <table>
+            <tr>
+              <th class="first-col"></th>
+              <th><p class="text-center">N/A</p><th>
+                <p class="text-center fs-6" data-bs-toggle="tooltip" title="Skill or behavior is absent, and/or poorly executed. 
+                Student requires or will require a high degree of feedback in this area, directed toward skill acquisition or performance.">Inadequate</th><th></th>
+              <th>  <p class="text-center fs-6" data-bs-toggle="tooltip" title="Skill or behavior is performed appropriately but inconsistently. 
+                Student requires or will require a moderate to high degree of feedback in this area, directed toward skill acquisition or performance.">Emerging</th><th></th>
+              <th> <p class="text-center fs-6" data-bs-toggle="tooltip" title="Skill or behavior is performed appropriately with fair degree of consistency. 
+                Student requires or will require a minimal to moderate degree of feedback in this area, directed toward skill performance or generalization.">Developing</th><th></th>
+              <th> <p class="text-center fs-6" data-bs-toggle="tooltip" title="Skill or behavior is performed effectively with moderate consistency. 
+                Student requires or will require minimal feedback in this area, directed toward skill performance or generalization.">Refining</th><th></th>
+              <th> <p class="text-center fs-6" data-bs-toggle="tooltip" title="Skill or behavior is performed efficiently and effectively with a high degree of consistency.
+                Student requires or will require little to no feedback in this area. Feedback is directed toward skill refinement.">Proficient</th><th></th>
+            </tr>
+
+            <tr style="background-color:#D3D3D3">
+              <td class="first-col">1. Clinician provided appropriate explanation and rationale for all activities.</td>
+              <td><input type="radio" name="c1_rating" value=0 {% if c1_rating == 0 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c1_rating" value=1 {% if c1_rating == 1 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c1_rating" value=1.5 {% if c1_rating == 1.5 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c1_rating" value=2 {% if c1_rating == 2 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c1_rating" value=2.5 {% if c1_rating == 2.5 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c1_rating" value=3 {% if c1_rating == 3 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c1_rating" value=3.5 {% if c1_rating == 3.5 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c1_rating" value=4 {% if c1_rating == 4 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c1_rating" value=4.5 {% if c1_rating == 4.5 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c1_rating" value=5 {% if c1_rating == 5 %} checked{% endif %}/></td>
+            </tr>
+
+            <tr>
+              <!-- <td> -->
+                <div class="col-sm-12 form-group">
+                <!-- INSTRUCTOR DROPDOWN COMMENT -->
+                <td>
+                  <!-- <p> -->
+                    <a class="btn btn-secondary" data-toggle="collapse" href="#multiCollapseExample19" role="button" aria-expanded="false" aria-controls="multiCollapseExample19">Instructor Comment</a>
+                  <!-- </p> -->
+                  
+                  <!-- <div class="row"> -->
+                    <!-- <div class="col"> -->
+                      <div class="collapse multi-collapse" id="multiCollapseExample19">
+                      <textarea class="form-control" type="textarea" name="c1_instructor_comment" id="c1_instructor_comment" placeholder="Type Here" maxlength="6000" rows="4"></textarea><!--/td-->
+                      <!-- <td></td><td></td><td></td><td></td><td></td><td></td><td></td> -->
+                    </div>
+                  </div>
+      
+                <!-- STUDENT DROPDOWN COMMENT -->
+              <!-- <td> -->
+                <!-- <p> -->
+                  <a class="btn btn-secondary" data-toggle="collapse" href="#multiCollapseExample20" role="button" aria-expanded="false" aria-controls="multiCollapseExample20">Student Comment</a>
+                <!-- </p> -->
+                <div class="row">
+                  <div class="col">
+                    <div class="collapse multi-collapse" id="multiCollapseExample20">
+                    <textarea class="form-control" type="textarea" name="c1_student_comment" id="c1comments" placeholder="Type here" maxlength="6000" rows="4"></textarea></td>
+                </div></td></tr>
+
+            <!--
+              <td><div class="col-sm-12 form-group">
+              <label for="comments">
+                  Student Comments:</label>
+              <textarea class="form-control" type="textarea" name="comments" id="comments" placeholder="Type here" maxlength="6000" rows="4"></textarea>
+          </div></td>
+          
+            <td><h4>Instructor Comment</h4>
+              <textarea rows="5"></textarea></td>
+              <td><h4>Student Comment</h4>
+              <textarea rows="5"></textarea></td>
+            -->
+            <tr style="background-color:#D3D3D3">
+              <td class="first-col">2. Clinician demonstrated techniques effectively.</td>
+              <td><input type="radio" name="c2_rating" value=0 {% if c2_rating == 0 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c2_rating" value=1 {% if c2_rating == 1 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c2_rating" value=1.5 {% if c2_rating == 1.5 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c2_rating" value=2 {% if c2_rating == 2 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c2_rating" value=2.5 {% if c2_rating == 2.5 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c2_rating" value=3 {% if c2_rating == 3 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c2_rating" value=3.5 {% if c2_rating == 3.5 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c2_rating" value=4 {% if c2_rating == 4 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c2_rating" value=4.5 {% if c2_rating == 4.5 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c2_rating" value=5 {% if c2_rating == 5 %} checked{% endif %}/></td>
+            </tr>
+
+            <tr>
+              <!-- <td> -->
+                <div class="col-sm-12 form-group">
+                <!-- INSTRUCTOR DROPDOWN COMMENT -->
+                <td>
+                  <!-- <p> -->
+                    <a class="btn btn-secondary" data-toggle="collapse" href="#multiCollapseExample21" role="button" aria-expanded="false" aria-controls="multiCollapseExample21">Instructor Comment</a>
+                  <!-- </p> -->
+                  
+                  <!-- <div class="row"> -->
+                    <!-- <div class="col"> -->
+                      <div class="collapse multi-collapse" id="multiCollapseExample21">
+                      <textarea class="form-control" type="textarea" name="c2_instructor_comment" id="c2_instructor_comment" placeholder="Type Here" maxlength="6000" rows="4"></textarea><!--/td-->
+                      <!-- <td></td><td></td><td></td><td></td><td></td><td></td><td></td> -->
+                    </div>
+                  </div>
+      
+                <!-- STUDENT DROPDOWN COMMENT -->
+              <!-- <td> -->
+                <!-- <p> -->
+                  <a class="btn btn-secondary" data-toggle="collapse" href="#multiCollapseExample22" role="button" aria-expanded="false" aria-controls="multiCollapseExample22">Student Comment</a>
+                <!-- </p> -->
+                <div class="row">
+                  <div class="col">
+                    <div class="collapse multi-collapse" id="multiCollapseExample22">
+                    <textarea class="form-control" type="textarea" name="c2_student_comment" id="c2comments" placeholder="Type here" maxlength="6000" rows="4"></textarea></td>
+                </div></td></tr>
+
+            <tr style="background-color:#D3D3D3">
+              <td class="first-col">3. Clinician utilized cueing levels (type and frequency) to optimize client response to stimuli.</td>
+              <td><input type="radio" name="c3_rating" value=0 {% if c3_rating == 0 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c3_rating" value=1 {% if c3_rating == 1 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c3_rating" value=1.5 {% if c3_rating == 1.5 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c3_rating" value=2 {% if c3_rating == 2 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c3_rating" value=2.5 {% if c3_rating == 2.5 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c3_rating" value=3 {% if c3_rating == 3 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c3_rating" value=3.5 {% if c3_rating == 3.5 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c3_rating" value=4 {% if c3_rating == 4 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c3_rating" value=4.5 {% if c3_rating == 4.5 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c3_rating" value=5 {% if c3_rating == 5 %} checked{% endif %}/></td>
+            </tr>
+
+            <tr>
+              <!-- <td> -->
+                <div class="col-sm-12 form-group">
+                <!-- INSTRUCTOR DROPDOWN COMMENT -->
+                <td>
+                  <!-- <p> -->
+                    <a class="btn btn-secondary" data-toggle="collapse" href="#multiCollapseExample23" role="button" aria-expanded="false" aria-controls="multiCollapseExample23">Instructor Comment</a>
+                  <!-- </p> -->
+                  
+                  <!-- <div class="row"> -->
+                    <!-- <div class="col"> -->
+                      <div class="collapse multi-collapse" id="multiCollapseExample23">
+                      <textarea class="form-control" type="textarea" name="c3_instructor_comment" id="c3_instructor_comment" placeholder="Type Here" maxlength="6000" rows="4"></textarea><!--/td-->
+                      <!-- <td></td><td></td><td></td><td></td><td></td><td></td><td></td> -->
+                    </div>
+                  </div>
+      
+                <!-- STUDENT DROPDOWN COMMENT -->
+              <!-- <td> -->
+                <!-- <p> -->
+                  <a class="btn btn-secondary" data-toggle="collapse" href="#multiCollapseExample24" role="button" aria-expanded="false" aria-controls="multiCollapseExample24">Student Comment</a>
+                <!-- </p> -->
+                <div class="row">
+                  <div class="col">
+                    <div class="collapse multi-collapse" id="multiCollapseExample24">
+                    <textarea class="form-control" type="textarea" name="c3_student_comment" id="c3comments" placeholder="Type here" maxlength="6000" rows="4"></textarea></td>
+                </div></td></tr>
+
+            <tr style="background-color:#D3D3D3">
+              <td class="first-col">4. Clinician exhibited use of linguistic and extralinguistic cues to enhance interaction.</td>
+              <td><input type="radio" name="c4_rating" value=0 {% if c4_rating == 0 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c4_rating" value=1 {% if c4_rating == 1 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c4_rating" value=1.5 {% if c4_rating == 1.5 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c4_rating" value=2 {% if c4_rating == 2 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c4_rating" value=2.5 {% if c4_rating == 2.5 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c4_rating" value=3 {% if c4_rating == 3 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c4_rating" value=3.5 {% if c4_rating == 3.5 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c4_rating" value=4 {% if c4_rating == 4 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c4_rating" value=4.5 {% if c4_rating == 4.5 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c4_rating" value=5 {% if c4_rating == 5 %} checked{% endif %}/></td>
+            </tr>
+
+            <tr>
+              <!-- <td> -->
+                <div class="col-sm-12 form-group">
+                <!-- INSTRUCTOR DROPDOWN COMMENT -->
+                <td>
+                  <!-- <p> -->
+                    <a class="btn btn-secondary" data-toggle="collapse" href="#multiCollapseExample25" role="button" aria-expanded="false" aria-controls="multiCollapseExample25">Instructor Comment</a>
+                  <!-- </p> -->
+                  
+                  <!-- <div class="row"> -->
+                    <!-- <div class="col"> -->
+                      <div class="collapse multi-collapse" id="multiCollapseExample25">
+                      <textarea class="form-control" type="textarea" name="c4_instructor_comment" id="c4_instructor_comment" placeholder="Type Here" maxlength="6000" rows="4"></textarea><!--/td-->
+                      <!-- <td></td><td></td><td></td><td></td><td></td><td></td><td></td> -->
+                    </div>
+                  </div>
+      
+                <!-- STUDENT DROPDOWN COMMENT -->
+              <!-- <td> -->
+                <!-- <p> -->
+                  <a class="btn btn-secondary" data-toggle="collapse" href="#multiCollapseExample26" role="button" aria-expanded="false" aria-controls="multiCollapseExample26">Student Comment</a>
+                <!-- </p> -->
+                <div class="row">
+                  <div class="col">
+                    <div class="collapse multi-collapse" id="multiCollapseExample26">
+                    <textarea class="form-control" type="textarea" name="c4_student_comment" id="c4comments" placeholder="Type here" maxlength="6000" rows="4"></textarea></td>
+                </div></td></tr>
+
+            <tr style="background-color:#D3D3D3">
+              <td class="first-col">5. Clinician exhibited active listening (degree of use of non-linguistic/non-verbal cues) evidenced by adjusting activities and responses.</td>
+              <td><input type="radio" name="c5_rating" value=0 {% if c5_rating == 0 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c5_rating" value=1 {% if c5_rating == 1 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c5_rating" value=1.5 {% if c5_rating == 1.5 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c5_rating" value=2 {% if c5_rating == 2 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c5_rating" value=2.5 {% if c5_rating == 2.5 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c5_rating" value=3 {% if c5_rating == 3 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c5_rating" value=3.5 {% if c5_rating == 3.5 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c5_rating" value=4 {% if c5_rating == 4 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c5_rating" value=4.5 {% if c5_rating == 4.5 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c5_rating" value=5 {% if c5_rating == 5 %} checked{% endif %}/></td>
+            </tr>
+
+            <tr>
+              <!-- <td> -->
+                <div class="col-sm-12 form-group">
+                <!-- INSTRUCTOR DROPDOWN COMMENT -->
+                <td>
+                  <!-- <p> -->
+                    <a class="btn btn-secondary" data-toggle="collapse" href="#multiCollapseExample27" role="button" aria-expanded="false" aria-controls="multiCollapseExample27">Instructor Comment</a>
+                  <!-- </p> -->
+                  
+                  <!-- <div class="row"> -->
+                    <!-- <div class="col"> -->
+                      <div class="collapse multi-collapse" id="multiCollapseExample27">
+                      <textarea class="form-control" type="textarea" name="c5_instructor_comment" id="c5_instructor_comment" placeholder="Type Here" maxlength="6000" rows="4"></textarea><!--/td-->
+                      <!-- <td></td><td></td><td></td><td></td><td></td><td></td><td></td> -->
+                    </div>
+                  </div>
+      
+                <!-- STUDENT DROPDOWN COMMENT -->
+              <!-- <td> -->
+                <!-- <p> -->
+                  <a class="btn btn-secondary" data-toggle="collapse" href="#multiCollapseExample28" role="button" aria-expanded="false" aria-controls="multiCollapseExample28">Student Comment</a>
+                <!-- </p> -->
+                <div class="row">
+                  <div class="col">
+                    <div class="collapse multi-collapse" id="multiCollapseExample28">
+                    <textarea class="form-control" type="textarea" name="c5_student_comment" id="c5comments" placeholder="Type here" maxlength="6000" rows="4"></textarea></td>
+                </div></td></tr>
+
+            <tr style="background-color:#D3D3D3">
+              <td class="first-col">6. The clinician modified stimulus materials to optimize client response.</td>
+              <td><input type="radio" name="c6_rating" value=0 {% if c6_rating == 0 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c6_rating" value=1 {% if c6_rating == 1 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c6_rating" value=1.5 {% if c6_rating == 1.5 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c6_rating" value=2 {% if c6_rating == 2 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c6_rating" value=2.5 {% if c6_rating == 2.5 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c6_rating" value=3 {% if c6_rating == 3 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c6_rating" value=3.5 {% if c6_rating == 3.5 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c6_rating" value=4 {% if c6_rating == 4 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c6_rating" value=4.5 {% if c6_rating == 4.5 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c6_rating" value=5 {% if c6_rating == 5 %} checked{% endif %}/></td>
+            </tr>
+
+            <tr>
+              <!-- <td> -->
+                <div class="col-sm-12 form-group">
+                <!-- INSTRUCTOR DROPDOWN COMMENT -->
+                <td>
+                  <!-- <p> -->
+                    <a class="btn btn-secondary" data-toggle="collapse" href="#multiCollapseExample29" role="button" aria-expanded="false" aria-controls="multiCollapseExample29">Instructor Comment</a>
+                  <!-- </p> -->
+                  
+                  <!-- <div class="row"> -->
+                    <!-- <div class="col"> -->
+                      <div class="collapse multi-collapse" id="multiCollapseExample29">
+                      <textarea class="form-control" type="textarea" name="c6_instructor_comment" id="c6_instructor_comment" placeholder="Type Here" maxlength="6000" rows="4"></textarea>
+                    <!-- </td> -->
+                      <!-- <td></td><td></td><td></td><td></td><td></td><td></td><td></td> -->
+                    </div>
+                  </div>
+      
+                <!-- STUDENT DROPDOWN COMMENT -->
+              <!-- <td> -->
+                <!-- <p> -->
+                  <a class="btn btn-secondary" data-toggle="collapse" href="#multiCollapseExample30" role="button" aria-expanded="false" aria-controls="multiCollapseExample30">Student Comment</a>
+                <!-- </p> -->
+                <div class="row">
+                  <div class="col">
+                    <div class="collapse multi-collapse" id="multiCollapseExample30">
+                    <textarea class="form-control" type="textarea" name="c6_student_comment" id="c6comments" placeholder="Type here" maxlength="6000" rows="4"></textarea></td>
+                </div></td></tr>
+
+            <tr style="background-color:#D3D3D3">
+              <td class="first-col">7. The clinician paced activities to optimize the number of client responses.</td>
+              <td><input type="radio" name="c7_rating" value=0 {% if c7_rating == 0 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c7_rating" value=1 {% if c7_rating == 1 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c7_rating" value=1.5 {% if c7_rating == 1.5 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c7_rating" value=2 {% if c7_rating == 2 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c7_rating" value=2.5 {% if c7_rating == 2.5 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c7_rating" value=3 {% if c7_rating == 3 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c7_rating" value=3.5 {% if c7_rating == 3.5 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c7_rating" value=4 {% if c7_rating == 4 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c7_rating" value=4.5 {% if c7_rating == 4.5 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c7_rating" value=5 {% if c7_rating == 5 %} checked{% endif %}/></td>
+            </tr>
+
+            <tr>
+              <!-- <td> -->
+                <div class="col-sm-12 form-group">
+                <!-- INSTRUCTOR DROPDOWN COMMENT -->
+                <td>
+                  <!-- <p> -->
+                    <a class="btn btn-secondary" data-toggle="collapse" href="#multiCollapseExample31" role="button" aria-expanded="false" aria-controls="multiCollapseExample31">Instructor Comment</a>
+                  <!-- </p> -->
+                  
+                  <!-- <div class="row"> -->
+                    <!-- <div class="col"> -->
+                      <div class="collapse multi-collapse" id="multiCollapseExample31">
+                      <textarea class="form-control" type="textarea" name="c7_instructor_comment" id="c7_instructor_comment" placeholder="Type Here" maxlength="6000" rows="4"></textarea>
+                    <!-- </td> -->
+                      <!-- <td></td><td></td><td></td><td></td><td></td><td></td><td></td> -->
+                    </div>
+                  </div>
+      
+                <!-- STUDENT DROPDOWN COMMENT -->
+              <!-- <td> -->
+                <!-- <p> -->
+                  <a class="btn btn-secondary" data-toggle="collapse" href="#multiCollapseExample32" role="button" aria-expanded="false" aria-controls="multiCollapseExample32">Student Comment</a>
+                <!-- </p> -->
+                <div class="row">
+                  <div class="col">
+                    <div class="collapse multi-collapse" id="multiCollapseExample32">
+                    <textarea class="form-control" type="textarea" name="c7_student_comment" id="c7comments" placeholder="Type here" maxlength="6000" rows="4"></textarea></td>
+                </div></td></tr>
+
+            <tr style="background-color:#D3D3D3">
+              <td class="first-col">8. Clinician intentionally utilized silence, pauses and/or wait time to optimize client responses.</td>
+              <td><input type="radio" name="c8_rating" value=0 {% if c8_rating == 0 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c8_rating" value=1 {% if c8_rating == 1 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c8_rating" value=1.5 {% if c8_rating == 1.5 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c8_rating" value=2 {% if c8_rating == 2 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c8_rating" value=2.5 {% if c8_rating == 2.5 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c8_rating" value=3 {% if c8_rating == 3 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c8_rating" value=3.5 {% if c8_rating == 3.5 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c8_rating" value=4 {% if c8_rating == 4 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c8_rating" value=4.5 {% if c8_rating == 4.5 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c8_rating" value=5 {% if c8_rating == 5 %} checked{% endif %}/></td>
+            </tr>
+
+            <tr>
+              <!-- <td> -->
+                <div class="col-sm-12 form-group">
+                <!-- INSTRUCTOR DROPDOWN COMMENT -->
+                <td>
+                  <!-- <p> -->
+                    <a class="btn btn-secondary" data-toggle="collapse" href="#multiCollapseExample33" role="button" aria-expanded="false" aria-controls="multiCollapseExample33">Instructor Comment</a>
+                  <!-- </p> -->
+                  
+                  <!-- <div class="row"> -->
+                    <!-- <div class="col"> -->
+                      <div class="collapse multi-collapse" id="multiCollapseExample33">
+                      <textarea class="form-control" type="textarea" name="c8_instructor_comment" id="c8_instructor_comment" placeholder="Type Here" maxlength="6000" rows="4"></textarea>
+                    <!-- </td> -->
+                      <!-- <td></td><td></td><td></td><td></td><td></td><td></td><td></td> -->
+                    </div>
+                  </div>
+      
+                <!-- STUDENT DROPDOWN COMMENT -->
+              <!-- <td> -->
+                <!-- <p> -->
+                  <a class="btn btn-secondary" data-toggle="collapse" href="#multiCollapseExample34" role="button" aria-expanded="false" aria-controls="multiCollapseExample34">Student Comment</a>
+                <!-- </p> -->
+                <div class="row">
+                  <div class="col">
+                    <div class="collapse multi-collapse" id="multiCollapseExample34">
+                    <textarea class="form-control" type="textarea" name="c8_student_comment" id="c8comments" placeholder="Type here" maxlength="6000" rows="4"></textarea></td>
+                </div></td></tr>
+
+            <tr style="background-color:#D3D3D3">
+              <td class="first-col">9. Clinician used appropriate speech rate, prosody and intonation.</td>
+              <td><input type="radio" name="c9_rating" value=0 {% if c9_rating == 0 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c9_rating" value=1 {% if c9_rating == 1 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c9_rating" value=1.5 {% if c9_rating == 1.5 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c9_rating" value=2 {% if c9_rating == 2 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c9_rating" value=2.5 {% if c9_rating == 2.5 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c9_rating" value=3 {% if c9_rating == 3 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c9_rating" value=3.5 {% if c9_rating == 3.5 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c9_rating" value=4 {% if c9_rating == 4 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c9_rating" value=4.5 {% if c9_rating == 4.5 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c9_rating" value=5 {% if c9_rating == 5 %} checked{% endif %}/></td>
+            </tr>
+
+            <tr>
+              <!-- <td> -->
+                <div class="col-sm-12 form-group">
+                <!-- INSTRUCTOR DROPDOWN COMMENT -->
+                <td>
+                  <!-- <p> -->
+                    <a class="btn btn-secondary" data-toggle="collapse" href="#multiCollapseExample35" role="button" aria-expanded="false" aria-controls="multiCollapseExample35">Instructor Comment</a>
+                  <!-- </p> -->
+                  
+                  <!-- <div class="row"> -->
+                    <!-- <div class="col"> -->
+                      <div class="collapse multi-collapse" id="multiCollapseExample35">
+                      <textarea class="form-control" type="textarea" name="c9_instructor_comment" id="c9_instructor_comment" placeholder="Type Here" maxlength="6000" rows="4"></textarea>
+                    <!-- </td> -->
+                      <!-- <td></td><td></td><td></td><td></td><td></td><td></td><td></td> -->
+                    </div>
+                  </div>
+      
+                <!-- STUDENT DROPDOWN COMMENT -->
+              <!-- <td> -->
+                <!-- <p> -->
+                  <a class="btn btn-secondary" data-toggle="collapse" href="#multiCollapseExample36" role="button" aria-expanded="false" aria-controls="multiCollapseExample36">Student Comment</a>
+                <!-- </p> -->
+                <div class="row">
+                  <div class="col">
+                    <div class="collapse multi-collapse" id="multiCollapseExample36">
+                    <textarea class="form-control" type="textarea" name="c9_student_comment" id="c9comments" placeholder="Type here" maxlength="6000" rows="4"></textarea></td>
+                </div></td></tr>
+
+            <tr style="background-color:#D3D3D3">
+              <td class="first-col">10. Clinician provided feedback that is corrective and instructional in nature.</td>
+              <td><input type="radio" name="c10_rating" value=0 {% if c10_rating == 0 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c10_rating" value=1 {% if c10_rating == 1 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c10_rating" value=1.5 {% if c10_rating == 1.5 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c10_rating" value=2 {% if c10_rating == 2 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c10_rating" value=2.5 {% if c10_rating == 2.5 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c10_rating" value=3 {% if c10_rating == 3 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c10_rating" value=3.5 {% if c10_rating == 3.5 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c10_rating" value=4 {% if c10_rating == 4 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c10_rating" value=4.5 {% if c10_rating == 4.5 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c10_rating" value=5 {% if c10_rating == 5 %} checked{% endif %}/></td>
+            </tr>
+
+            <tr>
+              <!-- <td> -->
+                <div class="col-sm-12 form-group">
+                <!-- INSTRUCTOR DROPDOWN COMMENT -->
+                <td>
+                  <!-- <p> -->
+                    <a class="btn btn-secondary" data-toggle="collapse" href="#multiCollapseExample37" role="button" aria-expanded="false" aria-controls="multiCollapseExample37">Instructor Comment</a>
+                  <!-- </p> -->
+                  
+                  <!-- <div class="row"> -->
+                    <!-- <div class="col"> -->
+                      <div class="collapse multi-collapse" id="multiCollapseExample37">
+                      <textarea class="form-control" type="textarea" name="c10_instructor_comment" id="c10_instructor_comment" placeholder="Type Here" maxlength="6000" rows="4"></textarea>
+                    <!-- </td> -->
+                      <!-- <td></td><td></td><td></td><td></td><td></td><td></td><td></td> -->
+                    </div>
+                  </div>
+      
+                <!-- STUDENT DROPDOWN COMMENT -->
+              <!-- <td> -->
+                <!-- <p> -->
+                  <a class="btn btn-secondary" data-toggle="collapse" href="#multiCollapseExample38" role="button" aria-expanded="false" aria-controls="multiCollapseExample38">Student Comment</a>
+                <!-- </p> -->
+                <div class="row">
+                  <div class="col">
+                    <div class="collapse multi-collapse" id="multiCollapseExample38">
+                    <textarea class="form-control" type="textarea" name="c10_student_comment" id="c10comments" placeholder="Type here" maxlength="6000" rows="4"></textarea></td>
+                </div></td></tr>
+
+            <tr style="background-color:#D3D3D3">
+              <td class="first-col">11. Clinician utilized language appropriate to age, culture, functional/developmental level, etc. of the client. (e.g., concrete, explicit, simple sentences, complex sentences, minimal figurative language, minimal sarcasm).</td>
+              <td><input type="radio" name="c11_rating" value=0 {% if c11_rating == 0 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c11_rating" value=1 {% if c11_rating == 1 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c11_rating" value=1.5 {% if c11_rating == 1.5 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c11_rating" value=2 {% if c11_rating == 2 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c11_rating" value=2.5 {% if c11_rating == 2.5 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c11_rating" value=3 {% if c11_rating == 3 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c11_rating" value=3.5 {% if c11_rating == 3.5 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c11_rating" value=4 {% if c11_rating == 4 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c11_rating" value=4.5 {% if c11_rating == 4.5 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c11_rating" value=5 {% if c11_rating == 5 %} checked{% endif %}/></td>
+            </tr>
+
+            <tr>
+              <!-- <td> -->
+                <div class="col-sm-12 form-group">
+                <!-- INSTRUCTOR DROPDOWN COMMENT -->
+                <td>
+                  <!-- <p> -->
+                    <a class="btn btn-secondary" data-toggle="collapse" href="#multiCollapseExample39" role="button" aria-expanded="false" aria-controls="multiCollapseExample39">Instructor Comment</a>
+                  <!-- </p> -->
+                  
+                  <!-- <div class="row"> -->
+                    <!-- <div class="col"> -->
+                      <div class="collapse multi-collapse" id="multiCollapseExample39">
+                      <textarea class="form-control" type="textarea" name="c11_instructor_comment" id="c11_instructor_comment" placeholder="Type Here" maxlength="6000" rows="4"></textarea>
+                    <!-- </td> -->
+                      <!-- <td></td><td></td><td></td><td></td><td></td><td></td><td></td> -->
+                    </div>
+                  </div>
+      
+                <!-- STUDENT DROPDOWN COMMENT -->
+              <!-- <td> -->
+                <!-- <p> -->
+                  <a class="btn btn-secondary" data-toggle="collapse" href="#multiCollapseExample40" role="button" aria-expanded="false" aria-controls="multiCollapseExample40">Student Comment</a>
+                <!-- </p> -->
+                <div class="row">
+                  <div class="col">
+                    <div class="collapse multi-collapse" id="multiCollapseExample40">
+                    <textarea class="form-control" type="textarea" name="c11_student_comment" id="c11comments" placeholder="Type here" maxlength="6000" rows="4"></textarea></td>
+                </div></td></tr>
+
+            <tr style="background-color:#D3D3D3">
+              <td class="first-col">12. Clinician actively engaged client(s) throughout the session.</td>
+              <td><input type="radio" name="c12_rating" value=0 {% if c12_rating == 0 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c12_rating" value=1 {% if c12_rating == 1 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c12_rating" value=1.5 {% if c12_rating == 1.5 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c12_rating" value=2 {% if c12_rating == 2 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c12_rating" value=2.5 {% if c12_rating == 2.5 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c12_rating" value=3 {% if c12_rating == 3 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c12_rating" value=3.5 {% if c12_rating == 3.5 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c12_rating" value=4 {% if c12_rating == 4 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c12_rating" value=4.5 {% if c12_rating == 4.5 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c12_rating" value=5 {% if c12_rating == 5 %} checked{% endif %}/></td>
+            </tr>
+            <tr>
+              <!-- <td> -->
+                <div class="col-sm-12 form-group">
+                <!-- INSTRUCTOR DROPDOWN COMMENT -->
+                <td>
+                  <!-- <p> -->
+                    <a class="btn btn-secondary" data-toggle="collapse" href="#multiCollapseExample41" role="button" aria-expanded="false" aria-controls="multiCollapseExample41">Instructor Comment</a>
+                  <!-- </p> -->
+                  
+                  <!-- <div class="row"> -->
+                    <!-- <div class="col"> -->
+                      <div class="collapse multi-collapse" id="multiCollapseExample41">
+                      <textarea class="form-control" type="textarea" name="c12_instructor_comment" id="c12_instructor_comment" placeholder="Type Here" maxlength="6000" rows="4"></textarea>
+                    <!-- </td> -->
+                      <!-- <td></td><td></td><td></td><td></td><td></td><td></td><td></td> -->
+                    </div>
+                  </div>
+      
+                <!-- STUDENT DROPDOWN COMMENT -->
+              <!-- <td> -->
+                <!-- <p> -->
+                  <a class="btn btn-secondary" data-toggle="collapse" href="#multiCollapseExample42" role="button" aria-expanded="false" aria-controls="multiCollapseExample42">Student Comment</a>
+                <!-- </p> -->
+                <div class="row">
+                  <div class="col">
+                    <div class="collapse multi-collapse" id="multiCollapseExample30">
+                    <textarea class="form-control" type="textarea" name="c12_student_comment" id="c12comments" placeholder="Type here" maxlength="6000" rows="4"></textarea></td>
+                </div></td></tr>
+
+            <tr style="background-color:#D3D3D3">
+              <td class="first-col">13. The clinician recorded data without interfering with the client’s performance or the flow of the session.</td>
+              <td><input type="radio" name="c13_rating" value=0 {% if c13_rating == 0 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c13_rating" value=1 {% if c13_rating == 1 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c13_rating" value=1.5 {% if c13_rating == 1.5 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c13_rating" value=2 {% if c13_rating == 2 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c13_rating" value=2.5 {% if c13_rating == 2.5 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c13_rating" value=3 {% if c13_rating == 3 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c13_rating" value=3.5 {% if c13_rating == 3.5 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c13_rating" value=4 {% if c13_rating == 4 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c13_rating" value=4.5 {% if c13_rating == 4.5 %} checked{% endif %}/></td>
+              <td><input type="radio" name="c13_rating" value=5 {% if c13_rating == 5 %} checked{% endif %}/></td>
+            </tr>
+
+            <tr>
+              <!-- <td> -->
+                <div class="col-sm-12 form-group">
+                <!-- INSTRUCTOR DROPDOWN COMMENT -->
+                <td>
+                  <!-- <p> -->
+                    <a class="btn btn-secondary" data-toggle="collapse" href="#multiCollapseExample43" role="button" aria-expanded="false" aria-controls="multiCollapseExample43">Instructor Comment</a>
+                  <!-- </p> -->
+                  
+                  <!-- <div class="row"> -->
+                    <!-- <div class="col"> -->
+                      <div class="collapse multi-collapse" id="multiCollapseExample43">
+                      <textarea class="form-control" type="textarea" name="c13_instructor_comment" id="c13_instructor_comment" placeholder="Type Here" maxlength="6000" rows="4"></textarea>
+                    <!-- </td> -->
+                      <!-- <td></td><td></td><td></td><td></td><td></td><td></td><td></td> -->
+                    </div>
+                  </div>
+      
+                <!-- STUDENT DROPDOWN COMMENT -->
+              <!-- <td> -->
+                <!-- <p> -->
+                  <a class="btn btn-secondary" data-toggle="collapse" href="#multiCollapseExample44" role="button" aria-expanded="false" aria-controls="multiCollapseExample44">Student Comment</a>
+                <!-- </p> -->
+                <div class="row">
+                  <div class="col">
+                    <div class="collapse multi-collapse" id="multiCollapseExample44">
+                    <textarea class="form-control" type="textarea" name="c13_student_comment" id="c13comments" placeholder="Type here" maxlength="6000" rows="4"></textarea></td>
+                </div></td></tr>
+
+          </table>
+
+          <script>
+            setInterval(calculateAverage_c, 100);
+            function calculateAverage_c()
+                {
+                  var c1=parseFloat(document.querySelector('input[name="c1_rating"]:checked').value);
+                  var c2=parseFloat(document.querySelector('input[name="c2_rating"]:checked').value);
+                  var c3=parseFloat(document.querySelector('input[name="c3_rating"]:checked').value);
+                  var c4=parseFloat(document.querySelector('input[name="c4_rating"]:checked').value);
+                  var c5=parseFloat(document.querySelector('input[name="c5_rating"]:checked').value);
+                  var c6=parseFloat(document.querySelector('input[name="c6_rating"]:checked').value);
+                  var c7=parseFloat(document.querySelector('input[name="c7_rating"]:checked').value);
+                  var c8=parseFloat(document.querySelector('input[name="c8_rating"]:checked').value);
+                  var c9=parseFloat(document.querySelector('input[name="c9_rating"]:checked').value);
+                  var c10=parseFloat(document.querySelector('input[name="c10_rating"]:checked').value);
+                  var c11=parseFloat(document.querySelector('input[name="c11_rating"]:checked').value);
+                  var c12=parseFloat(document.querySelector('input[name="c12_rating"]:checked').value);
+                  var c13=parseFloat(document.querySelector('input[name="c13_rating"]:checked').value);
+                  document.getElementById("average_c").innerHTML=(c1+c2+c3+c4+c5+c6+c7+c8+c9+c10+c11+c12+c13)/13;
+                }
+          </script>
+
+      	  <div class="item">
+		  	<center><label for="average_c"> Average for Section C: <b><label style="color: red" id="average_c"></b></label></label></center>
+		  </div>		
+
+
+            <!----------------------BUTTON LINE----------------------->
+            <div class="container">
+              <div class="row">
+                <div class="col-sm">
+                  <!--inner-->
+                </div>
+          
+        
+            <div class="btn-group" role="group" aria-label="buttons">
+              <button data-toggle="tab" a class="nav-link" href="#section_b">Back</button>
+              <button data-toggle="tab" a class="nav-link" href="#section_d">Next</button>
+              <button type="Dashboard" formaction="/dashboard">Dashboard</button>
+                 
+            </div>
+        
+            <div class="col-sm">
+              <!--Outer-->
+            </div>
+            </div>
+            </div>
+            </div>
+
+        <!----------------------------------------------------SECTION D OF FORM------------------------------------------------->
+        <div id="section_d" class="tab-pane fade">
+          <center><h4>D. Communication<span></span></h4></center>
+          <table>
+          <tr>
+            <th class="first-col"></th>
+            <th><p class="text-center">N/A</p><th>
+              <p class="text-center fs-6" data-bs-toggle="tooltip" title="Skill or behavior is absent, and/or poorly executed. Student requires or will require a high degree of feedback in this area, directed toward skill acquisition or performance.">Inadequate</th><th></th>
+            <th>  <p class="text-center fs-6" data-bs-toggle="tooltip" title="Skill or behavior is performed appropriately but inconsistently. Student requires or will require a moderate to high degree of feedback in this area, directed toward skill acquisition or performance.">Emerging</th><th></th>
+            <th> <p class="text-center fs-6" data-bs-toggle="tooltip" title="Skill or behavior is performed appropriately with fair degree of consistency. Student requires or will require a minimal to moderate degree of feedback in this area, directed toward skill performance or generalization.">Developing</th><th></th>
+            <th> <p class="text-center fs-6" data-bs-toggle="tooltip" title="Skill or behavior is performed effectively with moderate consistency. Student requires or will require minimal feedback in this area, directed toward skill performance or generalization.">Refining</th><th></th>
+            <th> <p class="text-center fs-6" data-bs-toggle="tooltip" title="Skill or behavior is performed efficiently and effectively with a high degree of consistency. Student requires or will require little to no feedback in this area. Feedback is directed toward skill refinement.">Proficient</th><th></th>
+          </tr>
+
+            <tr style="background-color:#D3D3D3">
+              <td class="first-col">1. Clinician was responsive to client’s/caregiver’s concerns.</td>
+              <td><input type="radio" name="d1_rating" value=0 {% if d1_rating == 0 %} checked{% endif %}/></td>
+              <td><input type="radio" name="d1_rating" value=1 {% if d1_rating == 1 %} checked{% endif %}/></td>
+              <td><input type="radio" name="d1_rating" value=1.5 {% if d1_rating == 1.5 %} checked{% endif %}/></td>
+              <td><input type="radio" name="d1_rating" value=2 {% if d1_rating == 2 %} checked{% endif %}/></td>
+              <td><input type="radio" name="d1_rating" value=2.5 {% if d1_rating == 2.5 %} checked{% endif %}/></td>
+              <td><input type="radio" name="d1_rating" value=3 {% if d1_rating == 3 %} checked{% endif %}/></td>
+              <td><input type="radio" name="d1_rating" value=3.5 {% if d1_rating == 3.5 %} checked{% endif %}/></td>
+              <td><input type="radio" name="d1_rating" value=4 {% if d1_rating == 4 %} checked{% endif %}/></td>
+              <td><input type="radio" name="d1_rating" value=4.5 {% if d1_rating == 4.5 %} checked{% endif %}/></td>
+              <td><input type="radio" name="d1_rating" value=5 {% if d1_rating == 5 %} checked{% endif %}/></td>
+            </tr>
+
+            <tr>
+              <!-- <td> -->
+                <div class="col-sm-12 form-group">
+                <!-- INSTRUCTOR DROPDOWN COMMENT -->
+                <td>
+                  <!-- <p> -->
+                    <a class="btn btn-secondary" data-toggle="collapse" href="#multiCollapseExample45" role="button" aria-expanded="false" aria-controls="multiCollapseExample45">Instructor Comment</a>
+                  <!-- </p> -->
+                  
+                  <!-- <div class="row"> -->
+                    <!-- <div class="col"> -->
+                      <div class="collapse multi-collapse" id="multiCollapseExample45">
+                      <textarea class="form-control" type="textarea" name="d1_instructor_comment" id="d1_instructor_comment" placeholder="Type Here" maxlength="6000" rows="4"></textarea>
+                    <!-- </td> -->
+                      <!-- <td></td><td></td><td></td><td></td><td></td><td></td><td></td> -->
+                    </div>
+                  </div>
+      
+                <!-- STUDENT DROPDOWN COMMENT -->
+              <!-- <td> -->
+                <!-- <p> -->
+                  <a class="btn btn-secondary" data-toggle="collapse" href="#multiCollapseExample46" role="button" aria-expanded="false" aria-controls="multiCollapseExample46">Student Comment</a>
+                <!-- </p> -->
+                <div class="row">
+                  <div class="col">
+                    <div class="collapse multi-collapse" id="multiCollapseExample46">
+                    <textarea class="form-control" type="textarea" name="d1_student_comment" id="d1comments" placeholder="Type here" maxlength="6000" rows="4"></textarea></td>
+                </div></td></tr>
+
+            
+            <tr style="background-color:#D3D3D3">
+              <td class="first-col">2. Clinician evidenced verbal and nonverbal behavior with the client(s) that is both cordial and respectful.</td>
+              <td><input type="radio" name="d2_rating" value=0 {% if d2_rating == 0 %} checked{% endif %}/></td>
+              <td><input type="radio" name="d2_rating" value=1 {% if d2_rating == 1 %} checked{% endif %}/></td>
+              <td><input type="radio" name="d2_rating" value=1.5 {% if d2_rating == 1.5 %} checked{% endif %}/></td>
+              <td><input type="radio" name="d2_rating" value=2 {% if d2_rating == 2 %} checked{% endif %}/></td>
+              <td><input type="radio" name="d2_rating" value=2.5 {% if d2_rating == 2.5 %} checked{% endif %}/></td>
+              <td><input type="radio" name="d2_rating" value=3 {% if d2_rating == 3 %} checked{% endif %}/></td>
+              <td><input type="radio" name="d2_rating" value=3.5 {% if d2_rating == 3.5 %} checked{% endif %}/></td>
+              <td><input type="radio" name="d2_rating" value=4 {% if d2_rating == 4 %} checked{% endif %}/></td>
+              <td><input type="radio" name="d2_rating" value=4.5 {% if d2_rating == 4.5 %} checked{% endif %}/></td>
+              <td><input type="radio" name="d2_rating" value=5 {% if d2_rating == 5 %} checked{% endif %}/></td>
+            </tr>
+
+            <tr>
+              <!-- <td> -->
+                <div class="col-sm-12 form-group">
+                <!-- INSTRUCTOR DROPDOWN COMMENT -->
+                <td>
+                  <!-- <p> -->
+                    <a class="btn btn-secondary" data-toggle="collapse" href="#multiCollapseExample47" role="button" aria-expanded="false" aria-controls="multiCollapseExample47">Instructor Comment</a>
+                  <!-- </p> -->
+                  
+                  <!-- <div class="row"> -->
+                    <!-- <div class="col"> -->
+                      <div class="collapse multi-collapse" id="multiCollapseExample47">
+                      <textarea class="form-control" type="textarea" name="d2_instructor_comment" id="d2_instructor_comment" placeholder="Type Here" maxlength="6000" rows="4"></textarea>
+                    <!-- </td> -->
+                      <!-- <td></td><td></td><td></td><td></td><td></td><td></td><td></td> -->
+                    </div>
+                  </div>
+      
+                <!-- STUDENT DROPDOWN COMMENT -->
+              <!-- <td> -->
+                <!-- <p> -->
+                  <a class="btn btn-secondary" data-toggle="collapse" href="#multiCollapseExample48" role="button" aria-expanded="false" aria-controls="multiCollapseExample48">Student Comment</a>
+                <!-- </p> -->
+                <div class="row">
+                  <div class="col">
+                    <div class="collapse multi-collapse" id="multiCollapseExample48">
+                    <textarea class="form-control" type="textarea" name="d2_student_comment" id="d2comments" placeholder="Type here" maxlength="6000" rows="4"></textarea></td>
+                </div></td></tr>
+
+            <tr style="background-color:#D3D3D3">
+              <td class="first-col">3. The clinician reported information (techniques and rationales) to stakeholders (client, parent, caregiver, etc.) that is clear and accurate; using language that is respectful and easily understood</td>
+              <td><input type="radio" name="d3_rating" value=0 {% if d3_rating == 0 %} checked{% endif %}/></td>
+              <td><input type="radio" name="d3_rating" value=1 {% if d3_rating == 1 %} checked{% endif %}/></td>
+              <td><input type="radio" name="d3_rating" value=1.5 {% if d3_rating == 1.5 %} checked{% endif %}/></td>
+              <td><input type="radio" name="d3_rating" value=2 {% if d3_rating == 2 %} checked{% endif %}/></td>
+              <td><input type="radio" name="d3_rating" value=2.5 {% if d3_rating == 2.5 %} checked{% endif %}/></td>
+              <td><input type="radio" name="d3_rating" value=3 {% if d3_rating == 3 %} checked{% endif %}/></td>
+              <td><input type="radio" name="d3_rating" value=3.5 {% if d3_rating == 3.5 %} checked{% endif %}/></td>
+              <td><input type="radio" name="d3_rating" value=4 {% if d3_rating == 4 %} checked{% endif %}/></td>
+              <td><input type="radio" name="d3_rating" value=4.5 {% if d3_rating == 4.5 %} checked{% endif %}/></td>
+              <td><input type="radio" name="d3_rating" value=5 {% if d3_rating == 5 %} checked{% endif %}/></td>
+            </tr>
+
+            <tr>
+              <!-- <td> -->
+                <div class="col-sm-12 form-group">
+                <!-- INSTRUCTOR DROPDOWN COMMENT -->
+                <td>
+                  <!-- <p> -->
+                    <a class="btn btn-secondary" data-toggle="collapse" href="#multiCollapseExample49" role="button" aria-expanded="false" aria-controls="multiCollapseExample49">Instructor Comment</a>
+                  <!-- </p> -->
+                  
+                  <!-- <div class="row"> -->
+                    <!-- <div class="col"> -->
+                      <div class="collapse multi-collapse" id="multiCollapseExample49">
+                      <textarea class="form-control" type="textarea" name="d3_instructor_comment" id="d3_instructor_comment" placeholder="Type Here" maxlength="6000" rows="4"></textarea>
+                    <!-- </td> -->
+                      <!-- <td></td><td></td><td></td><td></td><td></td><td></td><td></td> -->
+                    </div>
+                  </div>
+      
+                <!-- STUDENT DROPDOWN COMMENT -->
+              <!-- <td> -->
+                <!-- <p> -->
+                  <a class="btn btn-secondary" data-toggle="collapse" href="#multiCollapseExample50" role="button" aria-expanded="false" aria-controls="multiCollapseExample50">Student Comment</a>
+                <!-- </p> -->
+                <div class="row">
+                  <div class="col">
+                    <div class="collapse multi-collapse" id="multiCollapseExample50">
+                    <textarea class="form-control" type="textarea" name="d3_student_comment" id="d3comments" placeholder="Type here" maxlength="6000" rows="4"></textarea></td>
+                </div></td></tr>
+
+          </table>
+          <script>
+     		setInterval(calculateAverage_d, 100);
+            function calculateAverage_d()
+                {
+                  var d1=parseFloat(document.querySelector('input[name="d1_rating"]:checked').value);
+                  var d2=parseFloat(document.querySelector('input[name="d2_rating"]:checked').value);
+                  var d3=parseFloat(document.querySelector('input[name="d3_rating"]:checked').value);
+                  document.getElementById("average_d").innerHTML=(d1+d2+d3)/3;
+            
+                }
+          </script>
+
+      	  <div class="item">
+		  	<center><label for="average_d"> Average for Section D: <b><label style="color: red" id="average_d"></label></b></label></center>
+		  </div>		
+      
+      <!----------------------BUTTON LINE----------------------->
+      <div class="container">
+        <div class="row">
+          <div class="col-sm">
+            <!--inner-->
+          </div>
+
+
+      <div class="btn-group" role="group" aria-label="buttons">
+        <button data-toggle="tab" a class="nav-link" href="#section_c">Back</button>
+        <button data-toggle="tab" a class="nav-link" href="#section_e">Next</button>
+        <button type="Dashboard" formaction="/dashboard"> Dashboard</button>
+      </div>
+
+      <div class="col-sm">
+        <!--Outer-->
+      </div>
+      </div>
+      </div>
+      </div>
+
+          <!----------------------------------------------------SECTION E OF FORM------------------------------------------------->
+        <div id="section_e" class="tab-pane fade">
+          <center><h4>E. Clinician to Clinician Collaboration<span></span></h4></center>
+          <table>
+          <tr>
+            <th class="first-col"></th>
+            <th><p class="text-center">N/A</p><th>
+              <p class="text-center fs-6" data-bs-toggle="tooltip" title="Skill or behavior is absent, and/or poorly executed. Student requires or will require a high degree of feedback in this area, directed toward skill acquisition or performance.">Inadequate</th><th></th>
+            <th>  <p class="text-center fs-6" data-bs-toggle="tooltip" title="Skill or behavior is performed appropriately but inconsistently. Student requires or will require a moderate to high degree of feedback in this area, directed toward skill acquisition or performance.">Emerging</th><th></th>
+            <th> <p class="text-center fs-6" data-bs-toggle="tooltip" title="Skill or behavior is performed appropriately with fair degree of consistency. Student requires or will require a minimal to moderate degree of feedback in this area, directed toward skill performance or generalization.">Developing</th><th></th>
+            <th> <p class="text-center fs-6" data-bs-toggle="tooltip" title="Skill or behavior is performed effectively with moderate consistency. Student requires or will require minimal feedback in this area, directed toward skill performance or generalization.">Refining</th><th></th>
+            <th> <p class="text-center fs-6" data-bs-toggle="tooltip" title="Skill or behavior is performed efficiently and effectively with a high degree of consistency. Student requires or will require little to no feedback in this area. Feedback is directed toward skill refinement.">Proficient</th><th></th>
+          </tr>
+
+            <tr style="background-color:#D3D3D3">
+              <td class="first-col">1. The clinician(s) roles and responsibilities within a session were clearly delineated.</td>
+              <td><input type="radio" name="e1_rating" value=0 {% if e1_rating == 0 %} checked{% endif %}/></td>
+              <td><input type="radio" name="e1_rating" value=1 {% if e1_rating == 1 %} checked{% endif %}/></td>
+              <td><input type="radio" name="e1_rating" value=1.5 {% if e1_rating == 1.5 %} checked{% endif %}/></td>
+              <td><input type="radio" name="e1_rating" value=2 {% if e1_rating == 2 %} checked{% endif %}/></td>
+              <td><input type="radio" name="e1_rating" value=2.5 {% if e1_rating == 2.5 %} checked{% endif %}/></td>
+              <td><input type="radio" name="e1_rating" value=3 {% if e1_rating == 3 %} checked{% endif %}/></td>
+              <td><input type="radio" name="e1_rating" value=3.5 {% if e1_rating == 3.5 %} checked{% endif %}/></td>
+              <td><input type="radio" name="e1_rating" value=4 {% if e1_rating == 4 %} checked{% endif %}/></td>
+              <td><input type="radio" name="e1_rating" value=4.5 {% if e1_rating == 4.5 %} checked{% endif %}/></td>
+              <td><input type="radio" name="e1_rating" value=5 {% if e1_rating == 5 %} checked{% endif %}/></td>
+            </tr>
+
+            <tr>
+              <!-- <td> -->
+                <div class="col-sm-12 form-group">
+                <!-- INSTRUCTOR DROPDOWN COMMENT -->
+                <td>
+                  <!-- <p> -->
+                    <a class="btn btn-secondary" data-toggle="collapse" href="#multiCollapseExample51" role="button" aria-expanded="false" aria-controls="multiCollapseExample51">Instructor Comment</a>
+                  <!-- </p> -->
+                  
+                  <!-- <div class="row"> -->
+                    <!-- <div class="col"> -->
+                      <div class="collapse multi-collapse" id="multiCollapseExample51">
+                      <textarea class="form-control" type="textarea" name="e1_instructor_comment" id="e1_instructor_comment" placeholder="Type Here" maxlength="6000" rows="4"></textarea>
+                    <!-- </td> -->
+                      <!-- <td></td><td></td><td></td><td></td><td></td><td></td><td></td> -->
+                    </div>
+                  </div>
+      
+                <!-- STUDENT DROPDOWN COMMENT -->
+              <!-- <td> -->
+                <!-- <p> -->
+                  <a class="btn btn-secondary" data-toggle="collapse" href="#multiCollapseExample52" role="button" aria-expanded="false" aria-controls="multiCollapseExample52">Student Comment</a>
+                <!-- </p> -->
+                <div class="row">
+                  <div class="col">
+                    <div class="collapse multi-collapse" id="multiCollapseExample52">
+                    <textarea class="form-control" type="textarea" name="e1_student_comment" id="e1comments" placeholder="Type here" maxlength="6000" rows="4"></textarea></td>
+                </div></td></tr>
+
+            <!--
+              <td><div class="col-sm-12 form-group">
+              <label for="comments">
+                  Student Comments:</label>
+              <textarea class="form-control" type="textarea" name="comments" id="comments" placeholder="Type here" maxlength="6000" rows="4"></textarea>
+          </div></td>
+          
+            <td><h4>Instructor Comment</h4>
+              <textarea rows="5"></textarea></td>
+              <td><h4>Student Comment</h4>
+              <textarea rows="5"></textarea></td>
+            -->
+            <tr style="background-color:#D3D3D3">
+              <td class="first-col">2. The clinicians worked together seamlessly to ensure effective delivery of intervention.</td>
+              <td><input type="radio" name="e2_rating" value=0 {% if e2_rating == 0 %} checked{% endif %}/></td>
+              <td><input type="radio" name="e2_rating" value=1 {% if e2_rating == 1 %} checked{% endif %}/></td>
+              <td><input type="radio" name="e2_rating" value=1.5 {% if e2_rating == 1.5 %} checked{% endif %}/></td>
+              <td><input type="radio" name="e2_rating" value=2 {% if e2_rating == 2 %} checked{% endif %}/></td>
+              <td><input type="radio" name="e2_rating" value=2.5 {% if e2_rating == 2.5 %} checked{% endif %}/></td>
+              <td><input type="radio" name="e2_rating" value=3 {% if e2_rating == 3 %} checked{% endif %}/></td>
+              <td><input type="radio" name="e2_rating" value=3.5 {% if e2_rating == 3.5 %} checked{% endif %}/></td>
+              <td><input type="radio" name="e2_rating" value=4 {% if e2_rating == 4 %} checked{% endif %}/></td>
+              <td><input type="radio" name="e2_rating" value=4.5 {% if e2_rating == 4.5 %} checked{% endif %}/></td>
+              <td><input type="radio" name="e2_rating" value=5 {% if e2_rating == 5 %} checked{% endif %}/></td>
+            </tr>
+
+            <tr>
+              <!-- <td> -->
+                <div class="col-sm-12 form-group">
+                <!-- INSTRUCTOR DROPDOWN COMMENT -->
+                <td>
+                  <!-- <p> -->
+                    <a class="btn btn-secondary" data-toggle="collapse" href="#multiCollapseExample53" role="button" aria-expanded="false" aria-controls="multiCollapseExample53">Instructor Comment</a>
+                  <!-- </p> -->
+                  
+                  <!-- <div class="row"> -->
+                    <!-- <div class="col"> -->
+                      <div class="collapse multi-collapse" id="multiCollapseExample53">
+                      <textarea class="form-control" type="textarea" name="e2_instructor_comment" id="e2_instructor_comment" placeholder="Type Here" maxlength="6000" rows="4"></textarea>
+                    <!-- </td> -->
+                      <!-- <td></td><td></td><td></td><td></td><td></td><td></td><td></td> -->
+                    </div>
+                  </div>
+      
+                <!-- STUDENT DROPDOWN COMMENT -->
+              <!-- <td> -->
+                <!-- <p> -->
+                  <a class="btn btn-secondary" data-toggle="collapse" href="#multiCollapseExample54" role="button" aria-expanded="false" aria-controls="multiCollapseExample54">Student Comment</a>
+                <!-- </p> -->
+                <div class="row">
+                  <div class="col">
+                    <div class="collapse multi-collapse" id="multiCollapseExample54">
+                    <textarea class="form-control" type="textarea" name="e2_student_comment" id="e2comments" placeholder="Type here" maxlength="6000" rows="4"></textarea></td>
+                </div></td></tr>
+
+        </table>
+
+        <script>
+     	setInterval(calculateAverage_e, 100);
+          function calculateAverage_e()
+              {
+                var e1=parseFloat(document.querySelector('input[name="e1_rating"]:checked').value);
+                var e2=parseFloat(document.querySelector('input[name="e2_rating"]:checked').value);
+              
+                document.getElementById("average_e").innerHTML=(e1+e2)/2;
+              
+              }
+        </script>
+
+      	  <div class="item">
+		  	<center><label for="average_e"> Average for Section E: <b><label style="color: red" id="average_e"></b></label></label></center>
+		  </div>		
+
+    <!----------------------BUTTON LINE----------------------->
+    <div class="container">
+      <div class="row">
+        <div class="col-sm">
+          <!--inner-->
+        </div>
+
+      <div class="btn-group" role="group" aria-label="buttons">
+        <button data-toggle="tab" a class="nav-link" href="#section_d">Back</button>
+        <button type="Submit" formaction="/save">Submit and Finalize</button>
+        <button type="Dashboard" formaction="/dashboard"> Back to Dashboard</button>
+      </div>
+
+      <div class="col-sm">
+        <!--Outer-->
+      </div>
+      </div>
+      </div>
+              
+      </div>
+    </form>
+    </div>
+
+     <footer id="main-footer"> 
+            <p>2022 - Southern Connecticut State University</p>
+        </footer>
+    <!-- Other plugins -->
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
+	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" 
+	integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" 
+	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>
+

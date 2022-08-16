@@ -1,0 +1,26 @@
+<!-- Placeholder Display Page 
+This is currently used when trying to view a student assessment before an assessment has been completed
+(In future updates, the View Assessment button will be colored red or be ignored if the student has no assessments to view)-->
+
+<!DOCTYPE html>
+<html>
+  <link rel="stylesheet" href="css/error.css" />
+  <style>
+    body {
+    background-color: #90d4ff;
+    padding-top: 20%;
+    text-align: center;
+    font-size: 32pt;
+    font-family: Georgia;
+  }
+  
+  .loginlink{
+    font-size: 20pt;
+  }
+  </style>
+  <body>
+  	 <img src="/static/images/logo1.png"/>
+    <div id="error">There are no Assessments to view! Please Create an Assessment.</div>
+    <a class="loginlink" href="{{ url_for('dashboard') }}">Return</a>
+  </body>
+</html>

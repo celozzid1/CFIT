@@ -1,0 +1,313 @@
+<!-- Administrator Dashboard page
+This is the main Administrator page. Here an Administrator can see create/delete Administrators, Instructors and Students
+Currently the Administrator is also classified as an Instructor and with that comes Instructor level capabilities. -->
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Admin Dashboard</title>
+		
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+				integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+		<!-- Google Font -->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap" rel="stylesheet">
+	</head>
+
+<style>
+.active {
+  background-color: #04AA6D;
+  
+}
+table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      table,
+      th,
+      td {
+        border: 1px solid #0D6EFD;
+        text-align: center;
+        font-weight: bold;
+        
+      }
+      thead {
+        background-color: #0D6EFD;
+        color: #ffffff;
+      }
+      th {
+        text-align: center;
+        height: 50px;
+      }
+body{
+  text-align: left;
+  font-family: sans-serif;
+}
+.styled-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+	font-family: 'Roboto Condensed', sans-serif;
+    min-width: 400px;
+    border-radius: 10px 10px 0 0;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+.styled-table thead tr {
+    background-color: #0D6EFD;
+    color: #ffffff;
+    text-align: left;
+    border-bottom: 1px solid #ffffff;
+}
+.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #0D6EFD;
+}
+.styled-table tbody tr {
+    border-bottom: 1px solid #0D6EFD;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #0D6EFD;
+    border-bottom: 1px solid #0D6EFD;
+}
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: 1px solid #0D6EFD;
+}
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border-top: none;
+}
+input[type=text], select {
+  width: 100%;
+  padding: 4px 10px;
+  margin: 2px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+input[type=submit] {
+  width: 100%;
+  background-color: #267c2b;
+  color: white;
+  padding: 4px 10px;
+  margin: 2px 0;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+button[type=submit] {
+  width: 100%;
+  background-color: #ccc;
+  font-weight: bold;
+  color: black;
+  padding: 4px 10px;
+  margin: 2px 0;
+  border: 2px solid #000;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+form {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 10px;
+}
+</style>
+<body>
+	<img src="/static/images/logo1.png"/>
+
+
+    <div class="jumbotron p-3 mb-2 bg-primary text-white text-center">
+		<div class="container">
+		 <font-family: 'Roboto Condensed', sans-serif;>
+		 <font face = "Roboto Condensed" size = "5">
+		 <h1 class="display-6">Admin Dashboard</h1></font>
+		</div>
+	</div>
+	<div class="tab">
+    <button class="tablinks active" onclick="openTab(event, 'adminTable')" id="defaultOpen">Administrators</button>
+    <button class="tablinks" onclick="openTab(event, 'instructorTable')">Instructors</button>
+    <button class="tablinks" onclick="openTab(event, 'studentTable')">Students</button>
+    <button class="tablinks" onclick="location.href='instructor'">Instructor Dashboard & Assessments</button>
+    <button class="tablinks" onclick="location.href='logout'">Log Out</button>
+  </div>
+  <div class="container tabcontent" id="adminTable"> <br>
+    <table class="styled-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Admin Name</th>
+          <th>Email</th>
+
+        </tr>
+      </thead>
+      {% for item in admin %}
+      <tbody>     
+        <tr class="success">
+          <td>{{item.id}}</td>
+          <td>{{item.username}}</td>
+          <td>{{item.email}}</td>
+
+        </tr>
+      </tbody>
+      {% endfor %}
+    </table>
+    <br>
+    <form action="#" method="POST">
+      <input type="text" name="id" placeholder="Enter Admin ID (Required field to delete Admin)" value="{{id if id}}"/><br>
+      <input type="text" name="username" placeholder="Enter Username" value="{{username if username}}"/><br>
+      <input type="text" name="email" placeholder="Enter Email" value="{{email if email}}"/><br>
+      <input type="text" name="password_hash" placeholder="Enter a Password" value="{{password_hash if password_hash}}"/><br>
+      <input type="submit" name="addadmin" value="Add Admin"/>
+      <input type="submit" name="deleteadmin" value="Delete Admin"/>  
+    </form>
+
+  </div>
+    <div class="container tabcontent" id="instructorTable"> <br>
+    <table class="styled-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Instructor Name</th>
+          <th>Email</th>
+         
+        </tr>
+      </thead>
+      {% for item in instructor %}
+      <tbody>     
+        <tr class="success">
+          <td>{{item.id}}</td>
+          <td>{{item.username}}</td>
+          <td>{{item.email}}</td>
+       
+        </tr>
+      </tbody>
+      {% endfor %}
+      
+    </table>
+    <br>
+    <form action="#" method="POST">
+      <input type="text" name="id" placeholder="Enter Instructor ID (Required field to delete Instructor)" value="{{id if id}}"/><br>
+      <input type="text" name="username" placeholder="Enter Username" value="{{username if username}}"/><br>
+      <input type="text" name="email" placeholder="Enter Email" value="{{email if email}}"/><br>
+      <input type="text" name="password_hash" placeholder="Enter Password" value="{{password_hash if password_hash}}"/><br>
+      <input type="submit" name="addinstructor" value="Add Instructor"/>
+      <input type="submit" name="deleteinstructor" value="Delete Instructor"/>
+    </form>
+
+  </div>
+    <div class="container tabcontent" id="studentTable"> <br>
+  	 <table class="styled-table">
+      <thead>
+        <tr>
+          <th>Student ID</th>          
+          <th>Student Name</th>
+          <th>Class</th>
+          <th>Course</th>
+          <th>Semester</th>
+          <th>Instructor</th>
+          <th>Email</th>
+
+        </tr>
+      </thead>
+      {% for item in student %}
+      <tbody>     
+        <tr class="success">
+          <td>{{item.id}}</td>          
+          <td>{{item.student_name}}</td>
+          <td>{{item.class_year}}</td>
+          <td>{{item.course}}</td>
+          <td>{{item.semester}}</td>
+          <td>{{item.course_instructor}}</td>          
+          <td>{{item.email}}</td>
+
+        </tr>
+      </tbody>
+      {% endfor %}
+      
+    </table>
+    <br>
+    <form action="#" method="POST">
+      <input type="text" name="id" placeholder="Enter Student ID (Required field to delete Student)" value="{{id if id}}"/><br>
+      <input type="text" name="student_name" placeholder="Enter Username" value="{{student_name if student_name}}"/><br>
+      <input type="text" name="class_year" placeholder="Enter Class" value="{{class_year if class_year}}"/><br>
+      <input type="text" name="course" placeholder="Enter Course" value="{{course if course}}"/><br>
+      <input type="text" name="semester" placeholder="Enter Semester" value="{{semester if semester}}"/><br>
+      <input type="text" name="course_instructor" placeholder="Enter Instructor" value="{{course_instructor if course_instructor}}"/><br>
+      <input type="text" name="email" placeholder="Enter Email" value="{{email if email}}"/><br>
+      <input type="text" name="password_hash" placeholder="Enter Password" value="{{password_hash if password_hash}}"/><br>
+      <input type="submit" name="addstudent" value="Add Student"/>
+      <input type="submit" name="deletestudent" value="Delete Student"/>
+    </form>
+
+  </div>
+
+	<!-- Other plugins -->
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
+	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" 
+	integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" 
+	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script>
+function openTab(evt, tableName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(tableName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+document.getElementById("defaultOpen").click();
+</script>
+</body>
+</html>

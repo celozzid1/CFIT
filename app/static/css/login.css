@@ -1,0 +1,88 @@
+body {
+    font-family: georgia;
+    background-image: url('/static/images/newbuilding2.png');
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    }
+    button { 
+        background-color: blue; 
+        width: 100%;
+        color: white; 
+        padding: 4px 18px; 
+        margin: 10px 0px; 
+        border: none; 
+        cursor: pointer; 
+         } 
+    form { 
+        border: 0px solid #f1f1f1; 
+    } 
+    input[type=text], input[type=password] { 
+        width: 50%; 
+        margin: 8px 0;
+        padding: 4px 2px; 
+        display: inline-block; 
+        border: 2px solid blue; 
+        box-sizing: border-box; 
+    }
+    label{
+      font-weight: bold;
+    }
+    .login {
+      color: white;
+      background-color: #080076;
+      padding: 10px 141px;
+      text-decoration: none;
+    }
+    .login2 {
+      color: white;
+      background-color: #080076;
+      padding: 10px 130px;
+      text-decoration: none;
+    }
+    .login3 {
+      color: white;
+      background-color: #080076;
+      padding: 10px 137px;
+      text-decoration: none;
+    }
+    button:hover { 
+        opacity: 0.6; 
+    } 
+    .cancelbtn { 
+        background-color: #080076;
+        width: auto; 
+        padding: 4px 18px;
+        margin: 10px 5px;
+    } 
+    .container2 {
+      position: relative;
+    }
+    .header {
+      color: white; 
+      background-color: #080076;
+      height: 50px;
+      margin-bottom: 0px;
+      margin-top: 6%;
+      width: 50%;
+    }
+    .maincontainer { 
+       background-color: #90d4ff;
+       margin-left: 25%;
+       margin-right: 25%;
+       padding: 25px;
+    }
+    .italic{
+       font-style: italic;
+    }
+    #submitbtn {
+       background-color: #080076;
+       width: 50%;
+    }
+    .utilities{
+       font-style: italic;
+       color: #31317B;
+       text-align: left;
+       text-decoration: none;
+    }

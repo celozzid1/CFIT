@@ -1,0 +1,286 @@
+<!-- Instructor Dashboard page
+This is the main Instructor page. Here an Instructor can see all Students assigned to them and view and or create an assessment for a student.
+Instrcutors also have the ability to create/delete Clients.
+(In the future, the Admin Dashboard Nav menu item will be conditionally displayed) -->
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Instructor Dashboard</title>
+	
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+				integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+		<!-- Google Font -->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap" rel="stylesheet">
+
+	</head>
+
+<style>
+.active {
+  background-color: #04AA6D;
+  
+}
+table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      table,
+      th,
+      td {
+        border: 1px solid #0D6EFD;
+        text-align: center;
+        font-weight: bold;
+        
+      }
+      thead {
+        background-color: #0D6EFD;
+        color: #ffffff;
+      }
+      th {
+        text-align: center;
+        height: 50px;
+      }
+body{
+  text-align: left;
+  font-family: sans-serif;
+}
+.styled-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+	font-family: 'Roboto Condensed', sans-serif;
+    min-width: 400px;
+    border-radius: 10px 10px 0 0;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+.styled-table thead tr {
+    background-color: #0D6EFD;
+    color: #ffffff;
+    text-align: left;
+    border-bottom: 1px solid #ffffff;
+}
+.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #ffffff;
+}
+.styled-table tbody tr {
+    border-bottom: 1px solid #0D6EFD;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #0D6EFD;
+}
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #0D6EFD;
+}
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border-top: none;
+}
+input[type=text], select {
+  width: 100%;
+  padding: 4px 10px;
+  margin: 2px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+input[type=submit] {
+  width: 100%;
+  background-color: #267c2b;
+  color: white;
+  padding: 4px 10px;
+  margin: 2px 0;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+button[type=submit] {
+  width: 100%;
+  background-color: #ccc;
+  font-weight: bold;
+  color: black;
+  padding: 4px 10px;
+  margin: 2px 0;
+  border: 2px solid #000;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+form {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 10px;
+}
+</style>
+
+	
+<body>
+  <img src="/static/images/logo1.png"/>
+	<div class="jumbotron p-3 mb-2 bg-primary text-white text-center">
+		<div class="container">
+		
+		 <font-family: 'Roboto Condensed', sans-serif;>
+		 <font face = "Roboto Condensed" size = "5">
+		 <h1 class="display-6">Instructor Dashboard</h1></font>
+		</div>
+	</div>
+
+	<div class="tab">
+    <button class="tablinks active" onclick="openTab(event, 'studentTable')" id="defaultOpen">My Students</button>
+    <button class="tablinks" onclick="openTab(event, 'clientTable')">Clients</button>
+    <button class="tablinks" onclick="location.href='admin'">Administrator Dashboard</button>
+	<button class="tablinks" onclick="location.href='logout'">Log Out</button>
+	
+  	</div>
+
+
+
+  <!-- Students tab -->
+  <div class="container tabcontent" id="studentTable"> <br>
+  <table class="styled-table">
+      <thead>
+          <tr><th colspan="9">Students</th></tr>
+            <tr>
+              <th>Assessment ID</th>
+              <th>Student ID</th>
+              <th>Course Number</th>
+			  <th>Semester</th>
+              <th>Username</th>
+              <th>Client</th>
+              <th>Assessment</th>
+              <th>Progress</th>
+            </tr>
+          </thead>
+          {% for item in values %}
+          <tbody>     
+            <tr class="success">
+              <td>{{item.session_id}}</td>
+              <td>{{item.student_id}}</td>              
+              <td>{{item.course}}</td>
+              <td>{{item.semester}}</td>
+              <td>{{item.student_name}}</td>
+              <form action=""  method="post">
+     		 	 <input type="hidden" id="session_id" name="session_id" value="{{item.session_id}}">
+     		 	 <input type="hidden" id="student_id" name="student_id" value="{{item.student_id}}">
+                 <input type="hidden" name="course" value="{{item.course}}">
+                 <input type="hidden" name="semester" value="{{item.semester}}">
+                 <input type="hidden" name="student_name" value="{{item.student_name}}">
+              	 <td><button type="submit" name="new" formaction="/select_client">Assign Client</button></td>
+              	 <td><button type="submit" name="view" formaction="/view">View Assessment</button></td>
+              	 <td><button type="submit" name="progress">View Progress</button></td>
+              </form>
+            </tr>
+          </tbody>
+          {% endfor %}
+        </table>
+   
+    <br>
+    </div>
+    <!--Clients tab -->
+    <div class="container tabcontent" id="clientTable"> <br>
+      <table class="styled-table">
+          <thead>
+                      <tr><th colspan="4">Clients</th></tr>
+          
+                      <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Date</th>
+                        <th>Disorder</th>
+                      </tr>
+                    </thead>
+                    {% for item in client %}
+                    <tbody>     
+                      <tr class="success">
+                        <td>{{item.id}}</td>
+                        <td>{{item.name}}</td>
+                        <td>{{item.date}}</td>
+                        <td>{{item.disorder}}</td>
+                      </tr>
+                    </tbody>
+                    {% endfor %}
+              </table>
+                  <br>
+              <form action="#" method="POST">
+                <input type="text" name="id" placeholder="Enter ID (Required field to delete user)" value="{{id if id}}"/><br>
+                <input type="text" name="name" placeholder="Enter name" value="{{name if name}}"/><br>
+                <input type="text" name="date" placeholder="Enter date" value="{{date if date}}"/><br>
+                <input type="text" name="disorder" placeholder="Enter disorder" value="{{disorder if disorder}}"/><br>
+                <input type="submit" name="addclient" value="Add Client"/>
+                <input type="submit" name="deleteclient" value="Delete Client"/>
+              </form>
+          
+            </div>
+
+	<!-- Other plugins -->
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
+	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" 
+	integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" 
+	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script>
+    function openTab(evt, tableName) {
+      var i, tabcontent, tablinks;
+      tabcontent = document.getElementsByClassName("tabcontent");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+      tablinks = document.getElementsByClassName("tablinks");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+      }
+      document.getElementById(tableName).style.display = "block";
+      evt.currentTarget.className += " active";
+    }
+    document.getElementById("defaultOpen").click();
+    </script>
+</body>
+</html>
+

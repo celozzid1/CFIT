@@ -1,0 +1,27 @@
+<!-- Placeholder Display Page 
+This is currently used when a user does not have permission to access a page
+i.e. instructor user role attempting to access admin dashboard 
+(In future updates, the admin Dashboard menu item willbe conditionally displayed based on user role)-->
+
+<!DOCTYPE html>
+<html>
+  <link rel="stylesheet" href="css/error.css" />
+  <style>
+    body {
+    background-color: #90d4ff;
+    padding-top: 20%;
+    text-align: center;
+    font-size: 32pt;
+    font-family: Georgia;
+  }
+  
+  .loginlink{
+    font-size: 20pt;
+  }
+  </style>
+  <body>
+  	 <img src="/static/images/logo1.png"/>
+    <div id="error">You do not have permission to access this page!</div>
+    <a class="loginlink" href="{{ url_for('dashboard') }}">Return</a>
+  </body>
+</html>

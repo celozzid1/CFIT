@@ -1,0 +1,25 @@
+<!-- Logout Display Page 
+Courtesy page that contains a link to return to login page-->
+
+<!DOCTYPE html>
+<html>
+  <link rel="stylesheet" href="css/error.css" />
+  <style>
+    body {
+    background-color: #90d4ff;
+    padding-top: 20%;
+    text-align: center;
+    font-size: 32pt;
+    font-family: Georgia;
+  }
+  
+  .loginlink{
+    font-size: 20pt;
+  }
+  </style>
+  <body>
+  	 <img src="/static/images/logo1.png"/>
+    <div id="error">You have successfully logged out.</div>
+    <a class="loginlink" href="{{ url_for('login') }}">Return to login page</a>
+  </body>
+</html>
